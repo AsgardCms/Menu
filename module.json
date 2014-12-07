@@ -8,7 +8,8 @@
   "priority": 2,
   "providers": [
     "Modules\\Menu\\Providers\\RouteServiceProvider",
-    "Modules\\Menu\\Providers\\MenuServiceProvider"
+    "Modules\\Menu\\Providers\\MenuServiceProvider",
+    "Baum\\BaumServiceProvider"
   ],
   "files": [
     "start.php"
