@@ -12,10 +12,10 @@
 
 <div class="form-group">
     <label for="module">{{ trans('menu::menu-items.form.module') }}</label>
-    <select class="form-control" name="module" id="module">
+    <select class="form-control" name="module_name" id="module">
         <option value=""></option>
         <?php foreach(Module::enabled() as $module): ?>
-            <option value="{{ strtolower($module) }}" {{ $menuItem->module_name == strtolower($module) ? 'selected' : '' }}>{{ $module }}</option>
+            <option value="{{ strtolower($module->getName()) }}" {{ $menuItem->module_name == strtolower($module->getName()) ? 'selected' : '' }}>{{ $module }}</option>
         <?php endforeach; ?>
     </select>
 </div>
