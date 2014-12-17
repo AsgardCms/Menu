@@ -21,7 +21,7 @@ class RootMenuItemCreator extends EventListener
         $data = [
             'menu_id' => $event->menu->id,
             'position' => 0,
-            'is_root' => 1,
+            'is_root' => true,
             'en' => [
                 'title' => 'root'
             ],
