@@ -21,6 +21,7 @@
   display: none;
 }
 .dd-item,
+.dd-item-root,
 .dd-empty,
 .dd-placeholder {
   display: block;
@@ -31,6 +32,7 @@
   font-size: 13px;
   line-height: 20px;
 }
+.dd-handle-root,
 .dd-handle {
   display: block;
   margin: 5px 0;
@@ -49,6 +51,9 @@
   color: #2ea8e5;
   background: #fff;
   cursor: move;
+}
+.dd-item-root > .btn {
+  display: none;
 }
 .dd-item > button {
   display: block;
