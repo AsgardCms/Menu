@@ -12,6 +12,7 @@
     "Baum\\BaumServiceProvider"
   ],
   "files": [
-    "start.php"
+    "start.php",
+    "listeners.php"
   ]
 }
