@@ -14,7 +14,7 @@ class AddRootColumnToMenusTable extends Migration
 	{
 		Schema::table('menuitems', function(Blueprint $table)
 		{
-			$table->smallInteger('is_root')->default(0);
+			$table->boolean('is_root')->default(0);
 		});
 	}
 
