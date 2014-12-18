@@ -1,5 +1,6 @@
 <?php namespace Modules\Menu\Services;
 
+use Illuminate\Contracts\Cache\Repository;
 use Modules\Menu\Repositories\MenuItemRepository;
 
 class MenuService
@@ -14,13 +15,19 @@ class MenuService
      * @var MenuItemRepository
      */
     private $menuItemRepository;
+    /**
+     * @var Repository
+     */
+    private $cache;
 
     /**
      * @param MenuItemRepository $menuItem
+     * @param Repository $cache
      */
-    public function __construct(MenuItemRepository $menuItem)
+    public function __construct(MenuItemRepository $menuItem, Repository $cache)
     {
         $this->menuItemRepository = $menuItem;
+        $this->cache = $cache;
     }
 
     /**
@@ -33,10 +40,12 @@ class MenuService
     {
         $this->menuItem = $this->menuItemRepository->find($item['id']);
 
-        $rootItem = $this->menuItemRepository->getRootForMenu($this->menuItem->id);
-
+        $rootItem = $this->cache->rememberForever("root.item.for.menu-{$this->menuItem->id}", function() {
+            return $this->menuItemRepository->getRootForMenu($this->menuItem->menu_id);
+        });
         $this->savePosition($this->menuItem, $position);
-        if ( ! $this->menuItem->isRoot()) {
+
+        if ( ! $this->menuItem->isRoot() && $this->menuItem->parent_id != $rootItem->parent_id) {
             $this->menuItem->makeChildOf($rootItem);
         }
 
