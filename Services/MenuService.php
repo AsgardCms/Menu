@@ -6,6 +6,7 @@ class MenuService
 {
     /**
      * Current Menu Item being looped over
+     *
      * @var
      */
     protected $menuItem;
@@ -24,14 +25,20 @@ class MenuService
 
     /**
      * Perform needed operations on given menu item and set its position
+     *
      * @param $item
      * @param int $position
      */
     public function handle($item, $position)
     {
         $this->menuItem = $this->menuItemRepository->find($item['id']);
+
+        $rootItem = $this->menuItemRepository->getRootForMenu($this->menuItem->id);
+
         $this->savePosition($this->menuItem, $position);
-        $this->menuItem->makeRoot();
+        if ( ! $this->menuItem->isRoot()) {
+            $this->menuItem->makeChildOf($rootItem);
+        }
 
         if ($this->hasChildren($item)) {
             $this->setChildrenRecursively($item, $this->menuItem);
@@ -40,6 +47,7 @@ class MenuService
 
     /**
      * Sets the children of the given item
+     *
      * @param $item
      * @param $parent
      */
@@ -49,12 +57,15 @@ class MenuService
             $childMenuItem = $this->menuItemRepository->find($childItem['id']);
             $this->savePosition($childMenuItem, $childPosition);
             $childMenuItem->makeChildOf($parent);
-            if ($this->hasChildren($childItem)) $this->setChildrenRecursively($childItem, $childMenuItem);
+            if ($this->hasChildren($childItem)) {
+                $this->setChildrenRecursively($childItem, $childMenuItem);
+            }
         }
     }
 
     /**
      * Check if the item has children
+     *
      * @param $item
      * @return bool
      */
@@ -65,6 +76,7 @@ class MenuService
 
     /**
      * Save the position of the given item
+     *
      * @param $item
      * @param $position
      */

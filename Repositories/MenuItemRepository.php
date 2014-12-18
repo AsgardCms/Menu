@@ -15,4 +15,11 @@ interface MenuItemRepository extends BaseRepository
      * @return mixed
      */
     public function getForRoutes();
+
+    /**
+     * Get the root menu item for the given menu id
+     * @param int $menuId
+     * @return object
+     */
+    public function getRootForMenu($menuId);
 }

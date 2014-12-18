@@ -55,4 +55,15 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
 
         return $menuitemsArray;
     }
+
+    /**
+     * Get the root menu item for the given menu id
+     *
+     * @param int $menuId
+     * @return object
+     */
+    public function getRootForMenu($menuId)
+    {
+        return $this->model->where(['menu_id' => $menuId, 'is_root' => true])->first();
+    }
 }
