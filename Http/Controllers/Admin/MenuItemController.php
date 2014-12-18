@@ -1,5 +1,6 @@
 <?php namespace Modules\Menu\Http\Controllers\Admin;
 
+use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\Redirector;
 use Laracasts\Flash\Flash;
@@ -24,12 +25,17 @@ class MenuItemController
      * @var PageRepository
      */
     private $page;
+    /**
+     * @var Repository
+     */
+    private $cache;
 
-    public function __construct(MenuItemRepository $menuItem, Redirector $redirector, PageRepository $page)
+    public function __construct(MenuItemRepository $menuItem, Redirector $redirector, PageRepository $page, Repository $cache)
     {
         $this->menuItem = $menuItem;
         $this->redirector = $redirector;
         $this->page = $page;
+        $this->cache = $cache;
     }
 
     public function create(Menu $menu)
@@ -41,7 +47,13 @@ class MenuItemController
 
     public function store(Menu $menu, CreateMenuItemRequest $request)
     {
-        $this->menuItem->create($this->addMenuId($menu, $request));
+        $menuItem = $this->menuItem->create($this->addMenuId($menu, $request));
+
+        $rootItem = $this->cache->rememberForever("root.item.for.menu-{$menuItem->id}", function() use($menuItem) {
+            return $this->menuItem->getRootForMenu($menuItem->menu_id);
+        });
+
+        $menuItem->makeChildOf($rootItem);
 
         Flash::success(trans('menu::messages.menuitem created'));
         return $this->redirector->route('dashboard.menu.edit', [$menu->id]);
