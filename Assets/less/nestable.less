@@ -63,6 +63,8 @@
   display: none;
 }
 
+
+.dd-item-root > button,
 .dd-item > button {
   display: block;
   position: relative;
@@ -83,6 +85,8 @@
   font-weight: bold;
 }
 
+
+.dd-item-root > button:before,
 .dd-item > button:before {
   content: '+';
   display: block;
@@ -90,10 +94,15 @@
   width: 100%;
   text-align: center;
   text-indent: 0;
+  font-size: 20px;
+  line-height: 9px;
 }
 
+.dd-item-root > button[data-action="collapse"]:before,
 .dd-item > button[data-action="collapse"]:before {
   content: '-';
+  font-size: 20px;
+  line-height: 9px;
 }
 
 .dd-placeholder,
