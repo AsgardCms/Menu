@@ -11,7 +11,6 @@ class NavigationViewComposer
 
     public function compose(View $view)
     {
-        $tree = Menuitem::where('id', '=', 9)->first()->getDescendantsAndSelf()->toHierarchy();
-        dd($tree);
+        //$tree = Menuitem::where('id', '=', 9)->first()->getDescendantsAndSelf()->toHierarchy();
     }
 }
