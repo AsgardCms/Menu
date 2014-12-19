@@ -17,7 +17,8 @@ class Menuitem extends Node
         'title',
         'uri',
         'url',
-        'status'
+        'status',
+        'is_root'
     ];
 
     public function menu()
