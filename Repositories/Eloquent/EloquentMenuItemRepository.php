@@ -66,4 +66,22 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
     {
         return $this->model->where(['menu_id' => $menuId, 'is_root' => true])->firstOrFail();
     }
+
+    /**
+     * Return a complete tree for the given menu id
+     *
+     * @param int $menuId
+     * @return object
+     */
+    public function getTreeForMenu($menuId)
+    {
+        $tree = $this->model->where([
+            'menu_id' => $menuId,
+            'is_root' => true
+        ])->first()->getDescendantsAndSelf()->toHierarchy();
+
+        $tree = $tree->first();
+
+        return $tree->children;
+    }
 }

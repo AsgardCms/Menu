@@ -22,4 +22,12 @@ interface MenuItemRepository extends BaseRepository
      * @return object
      */
     public function getRootForMenu($menuId);
+
+    /**
+     * Return a complete tree for the given menu id
+     *
+     * @param int $menuId
+     * @return object
+     */
+    public function getTreeForMenu($menuId);
 }
