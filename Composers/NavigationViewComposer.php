@@ -5,6 +5,7 @@ use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Menu\Repositories\MenuRepository;
 use Pingpong\Menus\Builder;
 use Pingpong\Menus\Facades\Menu;
+use Pingpong\Menus\MenuItem;
 
 class NavigationViewComposer
 {
@@ -30,12 +31,39 @@ class NavigationViewComposer
 
             Menu::create($menu->name, function (Builder $menu) use ($menuTree) {
                 foreach ($menuTree as $menuItem) {
-                    $menu->add([
-                        'url'   =>  $menuItem->uri,
-                        'title' =>  $menuItem->title,
-                    ]);
+                    $this->addItemToMenu($menuItem, $menu);
                 }
             });
+        }
+    }
+
+    public function addItemToMenu($item, Builder $menu)
+    {
+        $menu->add([
+            'url'   =>  $item->uri,
+            'title' =>  $item->title,
+        ]);
+        if ($item->children) {
+            $this->addChildrenToMenu($item->title, $item->children, $menu);
+        }
+    }
+
+    private function addChildrenToMenu($name, $children, $menu)
+    {
+        foreach ($children as $child) {
+            $menu->dropdown($name, function(MenuItem $subMenu) use ($child)
+            {
+                $this->addSubItemToMenu($child, $subMenu);
+            });
+        }
+    }
+
+    private function addSubItemToMenu($child, MenuItem $sub)
+    {
+        $sub->url($child->uri, $child->title);
+
+        if ($child->children) {
+            $this->addChildrenToMenu($child->title, $child->children, $sub);
         }
     }
 }
