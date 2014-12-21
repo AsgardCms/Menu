@@ -1,6 +1,5 @@
 <?php namespace Modules\Menu\Composers;
 
-use Illuminate\Contracts\View\View;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Menu\Repositories\MenuRepository;
 use Pingpong\Menus\Builder;
@@ -24,7 +23,7 @@ class NavigationViewComposer
         $this->menuItem = $menuItem;
     }
 
-    public function compose(View $view)
+    public function compose()
     {
         foreach ($this->menu->all() as $menu) {
             $menuTree = $this->menuItem->getTreeForMenu($menu->id);
@@ -37,6 +36,11 @@ class NavigationViewComposer
         }
     }
 
+    /**
+     * Add a menu item to the menu
+     * @param object$item
+     * @param Builder $menu
+     */
     public function addItemToMenu($item, Builder $menu)
     {
         $menu->add([
@@ -48,6 +52,12 @@ class NavigationViewComposer
         }
     }
 
+    /**
+     * Add children to menu under the give name
+     * @param string $name
+     * @param object $children
+     * @param object $menu
+     */
     private function addChildrenToMenu($name, $children, $menu)
     {
         foreach ($children as $child) {
@@ -58,6 +68,11 @@ class NavigationViewComposer
         }
     }
 
+    /**
+     * Add children to the given menu recursively
+     * @param object $child
+     * @param MenuItem $sub
+     */
     private function addSubItemToMenu($child, MenuItem $sub)
     {
         $sub->url($child->uri, $child->title);
