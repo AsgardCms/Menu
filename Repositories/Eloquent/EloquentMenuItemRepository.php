@@ -20,7 +20,7 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
 
     public function rootsForMenu($menuId)
     {
-        return $this->model->roots()->where('menu_id', $menuId)->orderBy('position')->get();
+        return $this->model->roots()->where('menu_id', $menuId)->with('translations')->orderBy('position')->get();
     }
 
     /**
@@ -64,7 +64,7 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
      */
     public function getRootForMenu($menuId)
     {
-        return $this->model->where(['menu_id' => $menuId, 'is_root' => true])->firstOrFail();
+        return $this->model->with('translations')->where(['menu_id' => $menuId, 'is_root' => true])->firstOrFail();
     }
 
     /**
@@ -78,7 +78,7 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
         $tree = $this->model->where([
             'menu_id' => $menuId,
             'is_root' => true
-        ])->first()->getDescendantsAndSelf()->toHierarchy();
+        ])->with('translations')->first()->getDescendantsAndSelf()->toHierarchy();
 
         $tree = $tree->first();
 
