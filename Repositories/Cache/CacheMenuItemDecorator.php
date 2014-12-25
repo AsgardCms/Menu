@@ -13,7 +13,7 @@ class CacheMenuItemDecorator extends BaseCacheDecorator implements MenuItemRepos
     public function __construct(MenuItemRepository $menuItem)
     {
         parent::__construct();
-        $this->entityName = 'menus-items';
+        $this->entityName = 'menusItems';
         $this->repository = $menuItem;
     }
 

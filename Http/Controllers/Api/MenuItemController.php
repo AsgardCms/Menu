@@ -27,7 +27,7 @@ class MenuItemController
      */
     public function update(Request $request)
     {
-        $this->cache->tags('menu-items')->flush();
+        $this->cache->tags('menuItems')->flush();
 
         foreach ($request->all() as $position => $item) {
             $this->menuService->handle($item, $position);
