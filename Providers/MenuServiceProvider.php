@@ -1,7 +1,9 @@
 <?php namespace Modules\Menu\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Modules\Menu\Entities\Menu;
+use Modules\Menu\Repositories\Cache\CacheMenuDecorator;
 use Modules\Menu\Repositories\Eloquent\EloquentMenuRepository;
 
 class MenuServiceProvider extends ServiceProvider
@@ -41,7 +43,13 @@ class MenuServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Menu\Repositories\MenuRepository',
             function() {
-                return new EloquentMenuRepository(new Menu);
+                $repository = new EloquentMenuRepository(new Menu);
+
+                if (! Config::get('app.cache')) {
+                    return $repository;
+                }
+
+                return new CacheMenuDecorator($repository);
             }
         );
     }
