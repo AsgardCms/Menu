@@ -47,13 +47,7 @@ class MenuItemController
 
     public function store(Menu $menu, CreateMenuItemRequest $request)
     {
-        $menuItem = $this->menuItem->create($this->addMenuId($menu, $request));
-
-        $rootItem = $this->cache->rememberForever("root.item.for.menu-{$menuItem->id}", function() use($menuItem) {
-            return $this->menuItem->getRootForMenu($menuItem->menu_id);
-        });
-
-        $menuItem->makeChildOf($rootItem);
+        $this->menuItem->create($this->addMenuId($menu, $request));
 
         Flash::success(trans('menu::messages.menuitem created'));
         return $this->redirector->route('dashboard.menu.edit', [$menu->id]);
