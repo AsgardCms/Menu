@@ -5,8 +5,10 @@ class MenuRepositoryTest extends BaseMenuTest
     /** @test */
     public function it_creates_menu_with_root_menu_item()
     {
-        $this->assertEquals(1, $this->menu->find(1)->count());
-        $this->assertEquals('main', $this->menu->find(1)->name);
+        $menu = $this->createMenu('main', 'Main Menu');
+
+        $this->assertEquals($menu->id, $this->menu->find(1)->count());
+        $this->assertEquals($menu->name, $this->menu->find(1)->name);
         $this->assertInstanceOf('Modules\Menu\Entities\Menuitem', $this->menuItem->getRootForMenu(1));
     }
 }

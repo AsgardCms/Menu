@@ -13,8 +13,10 @@ class EloquentMenuItemRepositoryTest extends BaseMenuTest
      */
     public function it_should_create_menu_item_under_correct_root_item()
     {
+        $menu = $this->createMenu('second', 'Second Menu');
+
         $data = [
-            'menu_id' => 1,
+            'menu_id' => $menu->id,
             'position' => 0,
             'target' => '_self',
             'module_name' => 'blog',
@@ -32,6 +34,6 @@ class EloquentMenuItemRepositoryTest extends BaseMenuTest
 
         $menuItem = $this->menuItem->create($data);
 
-        $this->assertEquals(1, $menuItem->parent_id);
+        $this->assertEquals($menu->id, $menuItem->parent_id);
     }
 }
