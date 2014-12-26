@@ -39,13 +39,10 @@ class MenuService
     public function handle($item, $position)
     {
         $this->menuItem = $this->menuItemRepository->find($item['id']);
-
-        $rootItem = $this->cache->rememberForever("root.item.for.menu-{$this->menuItem->id}", function() {
-            return $this->menuItemRepository->getRootForMenu($this->menuItem->menu_id);
-        });
-        $this->savePosition($this->menuItem, $position);
+        $rootItem = $this->menuItemRepository->getRootForMenu($this->menuItem->menu_id);
 
         if ( ! $this->menuItem->isRoot() && $this->menuItem->parent_id != $rootItem->parent_id) {
+            $this->savePosition($this->menuItem, $position);
             $this->menuItem->makeChildOf($rootItem);
         }
 
@@ -65,6 +62,7 @@ class MenuService
         foreach ($item['children'] as $childPosition => $childItem) {
             $childMenuItem = $this->menuItemRepository->find($childItem['id']);
             $this->savePosition($childMenuItem, $childPosition);
+
             $childMenuItem->makeChildOf($parent);
             if ($this->hasChildren($childItem)) {
                 $this->setChildrenRecursively($childItem, $childMenuItem);
@@ -92,6 +90,6 @@ class MenuService
     private function savePosition($item, $position)
     {
         $item->position = $position;
-        $item->save();
+        return $item->save();
     }
 }
