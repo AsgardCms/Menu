@@ -20,8 +20,8 @@ class CreateMenuitemTranslationTable extends Migration
 
 			$table->tinyInteger('status')->default(0);
 			$table->string('title');
-			$table->string('url');
-			$table->string('uri');
+			$table->string('url')->nullable();
+			$table->string('uri')->nullable();
 
 			$table->unique(['menuitem_id', 'locale']);
 			$table->foreign('menuitem_id')->references('id')->on('menuitems')->onDelete('cascade');

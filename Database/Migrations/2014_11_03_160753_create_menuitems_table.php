@@ -20,7 +20,7 @@ class CreateMenuitemsTable extends Migration
 			$table->integer('page_id')->unsigned()->nullable();
 			$table->integer('position')->unsigned()->default(0);
 			$table->string('target', 10)->nullable();
-			$table->string('module_name');
+			$table->string('module_name')->nullable();
 
 			/* Nested Sets */
 			$table->integer('parent_id')->nullable();
