@@ -7,6 +7,6 @@ class MenuRepositoryTest extends BaseMenuTest
     {
         $this->assertEquals(1, $this->menu->find(1)->count());
         $this->assertEquals('main', $this->menu->find(1)->name);
-        $this->assertEquals(1, $this->menuItem->getRootForMenu(1)->count());
+        $this->assertInstanceOf('Modules\Menu\Entities\Menuitem', $this->menuItem->getRootForMenu(1));
     }
 }
