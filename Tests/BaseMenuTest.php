@@ -26,6 +26,16 @@ abstract class BaseMenuTest extends BaseTestCase
 
         $this->menu = app('Modules\Menu\Repositories\MenuRepository');
         $this->menuItem = app('Modules\Menu\Repositories\MenuItemRepository');
+
+        $data = [
+            'name' => 'main',
+            'primary' => true,
+            'en' => [
+                'title' => 'Test Menu',
+                'status' => 1,
+            ]
+        ];
+        $this->menu->create($data);
     }
 
 }

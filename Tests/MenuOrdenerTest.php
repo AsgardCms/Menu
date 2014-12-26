@@ -1,6 +1,6 @@
 <?php namespace Modules\Menu\Tests;
 
-class MenuOrdenerTest extends BaseMenuTest
+abstract class MenuOrdenerTest extends BaseMenuTest
 {
     public function setUp()
     {
