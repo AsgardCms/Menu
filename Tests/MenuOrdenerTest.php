@@ -41,7 +41,7 @@ class MenuOrdenerTest extends BaseMenuTest
     }
 
     /** @test */
-    public function it_makes_items_child_of_recursivaly()
+    public function it_makes_items_child_of_recursively()
     {
         // Prepare
         $menu = $this->createMenu('main', 'Main Menu');
