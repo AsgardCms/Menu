@@ -8,10 +8,10 @@ class EloquentMenuItemRepositoryTest extends BaseMenuTest
     }
 
     /**
-     * New menu item should be created as child of main root item
+     * New menu item should be created
      * @test
      */
-    public function it_should_create_menu_item_under_correct_root_item()
+    public function it_should_create_menu_item_as_root()
     {
         $menu = $this->createMenu('second', 'Second Menu');
 
@@ -34,6 +34,6 @@ class EloquentMenuItemRepositoryTest extends BaseMenuTest
 
         $menuItem = $this->menuItem->create($data);
 
-        $this->assertEquals($menu->id, $menuItem->parent_id);
+        $this->assertEquals(null, $menuItem->parent_id);
     }
 }
