@@ -2,6 +2,12 @@
 
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class NestedCollection
+ * Credit: TypiCMS - https://github.com/sdebacker/TypiCMS/blob/master/app/TypiCMS/NestableCollection.php
+ *
+ * @package Modules\Menu\Support
+ */
 class NestedCollection extends Collection
 {
     private $total = 0;
