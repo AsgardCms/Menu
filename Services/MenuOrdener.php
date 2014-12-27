@@ -48,6 +48,10 @@ class MenuOrdener
             $menuItem = $this->menuItemRepository->find($item['id']);
             $this->savePosition($menuItem, $position);
             $this->makeItemChildOf($menuItem, $parent->id);
+
+            if ($this->hasChildren($item)) {
+                $this->handleChildrenForParent($menuItem, $item['children']);
+            }
         }
     }
 
