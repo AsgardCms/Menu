@@ -1,7 +1,7 @@
 <?php namespace Modules\Menu\Entities;
 
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Core\Internationalisation\Translatable;
 use Modules\Menu\Support\NestedCollection;
 
 class Menuitem extends Model
@@ -12,6 +12,7 @@ class Menuitem extends Model
     protected $fillable = [
         'menu_id',
         'page_id',
+        'parent_id',
         'position',
         'target',
         'module_name',
