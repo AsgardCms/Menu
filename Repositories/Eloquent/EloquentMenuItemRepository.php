@@ -30,7 +30,7 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
 
     public function rootsForMenu($menuId)
     {
-        return $this->model->roots()->where('menu_id', $menuId)->with('translations')->orderBy('position')->get();
+        return $this->model->whereMenuId($menuId)->with('translations')->orderBy('position')->get();
     }
 
     /**

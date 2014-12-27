@@ -46,17 +46,15 @@ class MenuRenderer
     {
         $this->menu .= '<ol class="dd-list">';
         foreach ($items as $item) {
-            $isRootClass = (bool)$item->is_root ? '-root' : '';
-
-            $this->menu .= "<li class=\"dd-item{$isRootClass}\" data-id=\"{$item->id}\">";
+            $this->menu .= "<li class=\"dd-item\" data-id=\"{$item->id}\">";
             $this->menu .= '<a class="btn btn-sm btn-info"
                                    style="float:left; margin-right: 15px;"
                                    href="' . URL::route('dashboard.menuitem.edit', [$this->menuId, $item->id]) . '">
                                    Edit</a>';
-            $this->menu .= "<div class=\"dd-handle{$isRootClass}\">{$item->title}</div>";
+            $this->menu .= "<div class=\"dd-handle\">{$item->title}</div>";
 
             if ($this->hasChildren($item)) {
-                $this->generateHtmlFor($item->children()->get());
+                $this->generateHtmlFor($item->children);
             }
 
             $this->menu .= '</li>';
@@ -68,8 +66,8 @@ class MenuRenderer
      * @param $item
      * @return bool
      */
-    private function hasChildren(Node $item)
+    private function hasChildren($item)
     {
-        return !$item->children()->get()->isEmpty();
+        return !is_array($item->children);
     }
 }

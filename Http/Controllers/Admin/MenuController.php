@@ -67,7 +67,7 @@ class MenuController extends AdminBaseController
     {
         $menuItems = $this->menuItem->rootsForMenu($menu->id);
 
-        $menuStructure = $this->menuRenderer->renderForMenu($menu->id, $menuItems);
+        $menuStructure = $this->menuRenderer->renderForMenu($menu->id, $menuItems->nest());
 
         return View::make('menu::admin.menus.edit', compact('menu', 'menuStructure'));
     }
