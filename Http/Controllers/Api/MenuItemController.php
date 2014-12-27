@@ -2,23 +2,23 @@
 
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Http\Request;
-use Modules\Menu\Services\MenuService;
+use Modules\Menu\Services\MenuOrdener;
 
 class MenuItemController
 {
     /**
-     * @var MenuService
-     */
-    private $menuService;
-    /**
      * @var Repository
      */
     private $cache;
+    /**
+     * @var MenuOrdener
+     */
+    private $menuOrdener;
 
-    public function __construct(MenuService $menuService, Repository $cache)
+    public function __construct(MenuOrdener $menuOrdener, Repository $cache)
     {
-        $this->menuService = $menuService;
         $this->cache = $cache;
+        $this->menuOrdener = $menuOrdener;
     }
 
     /**
@@ -30,7 +30,7 @@ class MenuItemController
         $this->cache->tags('menuItems')->flush();
 
         foreach ($request->all() as $position => $item) {
-            $this->menuService->handle($item, $position);
+            $this->menuOrdener->handle($item, $position);
         }
     }
 }
