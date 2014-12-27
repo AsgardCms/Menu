@@ -32,7 +32,7 @@ class MenuOrdenerTest extends BaseMenuTest
             ]
         ];
 
-        // prepare
+        // Run
         $this->menuOrdener->handle($request);
 
         // Assert
