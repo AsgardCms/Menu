@@ -73,4 +73,31 @@ class MenuOrdenerTest extends BaseMenuTest
         $child2 = $this->menuItem->find($menuItem3->id);
         $this->assertEquals($menuItem2->id, $child2->parent_id);
     }
+
+    /** @test */
+    public function it_reorders_items()
+    {
+        // Prepare
+        $menu = $this->createMenu('main', 'Main Menu');
+        $menuItem1 = $this->createMenuItemForMenu($menu->id, 0);
+        $menuItem2 = $this->createMenuItemForMenu($menu->id, 1);
+
+        $request = [
+            0 => [
+                'id' => $menuItem2->id,
+            ],
+            1 => [
+                'id' => $menuItem1->id,
+            ]
+        ];
+
+        // Run
+        $this->menuOrdener->handle($request);
+
+        // Assert
+        $item1 = $this->menuItem->find($menuItem1->id);
+        $this->assertEquals(1, $item1->position);
+        $item2 = $this->menuItem->find($menuItem2->id);
+        $this->assertEquals(0, $item2->position);
+    }
 }
