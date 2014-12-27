@@ -1,19 +1,16 @@
 <?php namespace Modules\Menu\Tests;
 
-abstract class MenuOrdenerTest extends BaseMenuTest
+class MenuOrdenerTest extends BaseMenuTest
 {
     public function setUp()
     {
         parent::setUp();
+        $this->createMenu('main', 'Main Menu');
+    }
 
-        $data = [
-            'name' => 'main',
-            'primary' => true,
-            'en' => [
-                'title' => 'Test Menu',
-                'status' => 1,
-            ]
-        ];
-        $this->menu->create($data);
+    /** @test */
+    public function it_ok()
+    {
+        $this->assertTrue(true);
     }
 }
