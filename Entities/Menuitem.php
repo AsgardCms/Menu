@@ -35,10 +35,10 @@ class Menuitem extends Model
     }
 
     /**
-     * Custom collection
+     * Return a custom nested collection
      *
      * @param array $models
-     * @return NestedCollection object
+     * @return NestedCollection
      */
     public function newCollection(array $models = array())
     {
