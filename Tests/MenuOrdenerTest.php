@@ -100,4 +100,31 @@ class MenuOrdenerTest extends BaseMenuTest
         $item2 = $this->menuItem->find($menuItem2->id);
         $this->assertEquals(0, $item2->position);
     }
+
+    /** @test */
+    public function it_moves_items_to_root()
+    {
+        // Prepare
+        $menu = $this->createMenu('main', 'Main Menu');
+        $menuItem1 = $this->createMenuItemForMenu($menu->id, 0);
+        $menuItem2 = $this->createMenuItemForMenu($menu->id, 1, $menuItem1->id);
+
+        $request = [
+            0 => [
+                'id' => $menuItem1->id,
+            ],
+            1 => [
+                'id' => $menuItem2->id,
+            ]
+        ];
+
+        // Run
+        $this->menuOrdener->handle($request);
+
+        // Assert
+        $item1 = $this->menuItem->find($menuItem1->id);
+        $this->assertEquals(null, $item1->parent_id);
+        $item2 = $this->menuItem->find($menuItem2->id);
+        $this->assertEquals(null, $item2->parent_id);
+    }
 }
