@@ -1,5 +1,7 @@
 <?php namespace Modules\Menu\Tests;
 
+use Faker\Factory;
+use Illuminate\Support\Str;
 use Modules\Core\Tests\BaseTestCase;
 
 abstract class BaseMenuTest extends BaseTestCase
@@ -39,5 +41,38 @@ abstract class BaseMenuTest extends BaseTestCase
             ]
         ];
         return $this->menu->create($data);
+    }
+
+    /**
+     * Create a menu item for the given menu and position
+     * @param int $menuId
+     * @param int $position
+     * @return object
+     */
+    protected function createMenuItemForMenu($menuId, $position)
+    {
+        $faker = Factory::create();
+
+        $title = implode(' ', $faker->words(3));
+        $slug = Str::slug($title);
+
+        $data = [
+            'menu_id' => $menuId,
+            'position' => $position,
+            'target' => '_self',
+            'module_name' => 'blog',
+            'en' => [
+                'status' => 1,
+                'title' => $title,
+                'uri' => $slug
+            ],
+            'fr' => [
+                'status' => 1,
+                'title' => $title,
+                'uri' => $slug
+            ],
+        ];
+
+        return $this->menuItem->create($data);
     }
 }
