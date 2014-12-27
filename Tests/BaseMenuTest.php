@@ -45,11 +45,13 @@ abstract class BaseMenuTest extends BaseTestCase
 
     /**
      * Create a menu item for the given menu and position
+     *
      * @param int $menuId
      * @param int $position
+     * @param null $parentId
      * @return object
      */
-    protected function createMenuItemForMenu($menuId, $position)
+    protected function createMenuItemForMenu($menuId, $position, $parentId = null)
     {
         $faker = Factory::create();
 
@@ -59,6 +61,7 @@ abstract class BaseMenuTest extends BaseTestCase
         $data = [
             'menu_id' => $menuId,
             'position' => $position,
+            'parent_id' => $parentId,
             'target' => '_self',
             'module_name' => 'blog',
             'en' => [
