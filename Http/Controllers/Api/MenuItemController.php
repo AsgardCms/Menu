@@ -29,8 +29,6 @@ class MenuItemController
     {
         $this->cache->tags('menuItems')->flush();
 
-        foreach ($request->all() as $position => $item) {
-            $this->menuOrdener->handle($item, $position);
-        }
+        $this->menuOrdener->handle($request->all());
     }
 }
