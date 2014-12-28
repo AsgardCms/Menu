@@ -1,6 +1,7 @@
 <?php namespace Modules\Menu\Services;
 
 use Illuminate\Support\Facades\URL;
+use Illuminate\Html\FormFacade as Form;
 
 class MenuRenderer
 {
@@ -46,10 +47,21 @@ class MenuRenderer
         $this->menu .= '<ol class="dd-list">';
         foreach ($items as $item) {
             $this->menu .= "<li class=\"dd-item\" data-id=\"{$item->id}\">";
-            $this->menu .= '<a class="btn btn-sm btn-info"
-                                   style="float:left; margin-right: 15px;"
-                                   href="'.URL::route('dashboard.menuitem.edit', [$this->menuId, $item->id]).'">
-                                   Edit</a>';
+            $editLink = URL::route('dashboard.menuitem.edit', [$this->menuId, $item->id]);
+            $removeLink = URL::route('dashboard.menuitem.destroy', [$this->menuId, $item->id]);
+            $removeFormOpenTag = Form::open(['url' => $removeLink, 'method' => 'delete']);
+            $this->menu .= <<<HTML
+<div class="btn-group" role="group" aria-label="Action buttons" style="display: inline">
+    <a class="btn btn-sm btn-info" style="float:left;" href="{$editLink}">
+        <i class="fa fa-pencil"></i>
+    </a>
+    {$removeFormOpenTag}
+        <button type="submit" class="btn btn-sm btn-danger" style="float:left; margin-right: 15px;">
+           <i class="fa fa-times"></i>
+        </button>
+    </form>
+</div>
+HTML;
             $this->menu .= "<div class=\"dd-handle\">{$item->title}</div>";
 
             if ($this->hasChildren($item)) {
