@@ -1,6 +1,5 @@
 <?php namespace Modules\Menu\Http\Controllers\Admin;
 
-use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\Redirector;
 use Laracasts\Flash\Flash;
@@ -25,17 +24,12 @@ class MenuItemController
      * @var PageRepository
      */
     private $page;
-    /**
-     * @var Repository
-     */
-    private $cache;
 
-    public function __construct(MenuItemRepository $menuItem, Redirector $redirector, PageRepository $page, Repository $cache)
+    public function __construct(MenuItemRepository $menuItem, Redirector $redirector, PageRepository $page)
     {
         $this->menuItem = $menuItem;
         $this->redirector = $redirector;
         $this->page = $page;
-        $this->cache = $cache;
     }
 
     public function create(Menu $menu)
