@@ -83,4 +83,37 @@ class CacheMenuItemDecorator extends BaseCacheDecorator implements MenuItemRepos
                 }
             );
     }
+
+    /**
+     * Get all root elements
+     *
+     * @param  int $menuId
+     * @return object
+     */
+    public function allRootsForMenu($menuId)
+    {
+        return $this->cache
+            ->tags($this->entityName, 'global')
+            ->remember("{$this->locale}.{$this->entityName}.allRootsForMenu.{$menuId}", $this->cacheTime,
+                function () use ($menuId) {
+                    return $this->repository->allRootsForMenu($menuId);
+                }
+            );
+    }
+
+    /**
+     * @param  string $uri
+     * @param  string $locale
+     * @return object
+     */
+    public function findByUriInLanguage($uri, $locale)
+    {
+        return $this->cache
+            ->tags($this->entityName, 'global')
+            ->remember("{$this->locale}.{$this->entityName}.findByUriInLanguage.{$uri}.{$locale}", $this->cacheTime,
+                function () use ($uri, $locale) {
+                    return $this->repository->findByUriInLanguage($uri, $locale);
+                }
+            );
+    }
 }
