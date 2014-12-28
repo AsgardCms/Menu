@@ -30,4 +30,11 @@ interface MenuItemRepository extends BaseRepository
      * @return object
      */
     public function getTreeForMenu($menuId);
+
+    /**
+     * @param string $uri
+     * @param string $locale
+     * @return object
+     */
+    public function findByUriInLanguage($uri, $locale);
 }

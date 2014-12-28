@@ -94,4 +94,18 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
 
         return $items->nest();
     }
+
+    /**
+     * @param string $uri
+     * @param string $locale
+     * @return object
+     */
+    public function findByUriInLanguage($uri, $locale)
+    {
+        return $this->model->whereHas('translations', function (Builder $q) use ($locale, $uri) {
+            $q->where('status', 1);
+            $q->where('locale', $locale);
+            $q->where('uri', $uri);
+        })->with('translations')->first();
+    }
 }
