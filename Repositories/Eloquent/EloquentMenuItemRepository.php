@@ -1,5 +1,7 @@
 <?php namespace Modules\Menu\Repositories\Eloquent;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Laracasts\Commander\Events\EventGenerator;
 use Laracasts\Commander\Events\DispatchableTrait;
@@ -30,7 +32,10 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
 
     public function rootsForMenu($menuId)
     {
-        return $this->model->whereMenuId($menuId)->with('translations')->orderBy('position')->get();
+        return $this->model->whereHas('translations', function (Builder $q) {
+            $q->where('status', 1);
+            $q->where('locale', App::getLocale());
+        })->with('translations')->whereMenuId($menuId)->orderBy('position')->get();
     }
 
     /**
