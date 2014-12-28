@@ -17,7 +17,7 @@ return [
     ],
     'button' => [
         'create menu item' => 'Create a menu item',
-        'create menu' => 'Create a menu'
+        'create menu' => 'Create a menu',
     ],
     'table' => [
         'name' => 'Name',

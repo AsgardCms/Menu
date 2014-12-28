@@ -38,17 +38,18 @@ abstract class BaseMenuTest extends BaseTestCase
             'en' => [
                 'title' => $title,
                 'status' => 1,
-            ]
+            ],
         ];
+
         return $this->menu->create($data);
     }
 
     /**
      * Create a menu item for the given menu and position
      *
-     * @param int $menuId
-     * @param int $position
-     * @param null $parentId
+     * @param  int    $menuId
+     * @param  int    $position
+     * @param  null   $parentId
      * @return object
      */
     protected function createMenuItemForMenu($menuId, $position, $parentId = null)
@@ -67,12 +68,12 @@ abstract class BaseMenuTest extends BaseTestCase
             'en' => [
                 'status' => 1,
                 'title' => $title,
-                'uri' => $slug
+                'uri' => $slug,
             ],
             'fr' => [
                 'status' => 1,
                 'title' => $title,
-                'uri' => $slug
+                'uri' => $slug,
             ],
         ];
 

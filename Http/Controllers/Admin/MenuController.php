@@ -60,6 +60,7 @@ class MenuController extends AdminBaseController
         $this->menu->create($request->all());
 
         Flash::success(trans('menu::messages.menu created'));
+
         return $this->redirector->route('dashboard.menu.index');
     }
 
@@ -77,6 +78,7 @@ class MenuController extends AdminBaseController
         $this->menu->update($menu, $request->all());
 
         Flash::success(trans('menu::messages.menu updated'));
+
         return $this->redirector->route('dashboard.menu.index');
     }
 
@@ -85,6 +87,7 @@ class MenuController extends AdminBaseController
         $this->menu->destroy($menu);
 
         Flash::success(trans('menu::messages.menu deleted'));
+
         return $this->redirector->route('dashboard.menu.index');
     }
 }

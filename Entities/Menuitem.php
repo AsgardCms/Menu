@@ -20,7 +20,7 @@ class Menuitem extends Model
         'uri',
         'url',
         'status',
-        'is_root'
+        'is_root',
     ];
 
     /**
@@ -38,7 +38,7 @@ class Menuitem extends Model
     /**
      * Return a custom nested collection
      *
-     * @param array $models
+     * @param  array            $models
      * @return NestedCollection
      */
     public function newCollection(array $models = array())

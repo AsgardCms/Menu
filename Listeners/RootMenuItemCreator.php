@@ -23,11 +23,11 @@ class RootMenuItemCreator extends EventListener
             'position' => 0,
             'is_root' => true,
             'en' => [
-                'title' => 'root'
+                'title' => 'root',
             ],
             'fr' => [
-                'title' => 'root'
-            ]
+                'title' => 'root',
+            ],
         ];
 
         $menuItem = $this->menuItem->create($data);

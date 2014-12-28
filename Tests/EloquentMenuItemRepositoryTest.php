@@ -23,12 +23,12 @@ class EloquentMenuItemRepositoryTest extends BaseMenuTest
             'en' => [
                 'status' => 1,
                 'title' => 'First Menu Item',
-                'uri' => 'item1'
+                'uri' => 'item1',
             ],
             'fr' => [
                 'status' => 1,
                 'title' => 'Premier item de menu',
-                'uri' => 'item1'
+                'uri' => 'item1',
             ],
         ];
 

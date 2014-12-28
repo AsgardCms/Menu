@@ -26,10 +26,10 @@ class MenuOrdenerTest extends BaseMenuTest
                 'id' => $menuItem1->id,
                 'children' => [
                     0 => [
-                        'id' => $menuItem2->id
-                    ]
-                ]
-            ]
+                        'id' => $menuItem2->id,
+                    ],
+                ],
+            ],
         ];
 
         // Run
@@ -56,12 +56,12 @@ class MenuOrdenerTest extends BaseMenuTest
                         'id' => $menuItem2->id,
                         'children' => [
                             0 => [
-                                'id' => $menuItem3->id
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                'id' => $menuItem3->id,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         // Run
@@ -88,7 +88,7 @@ class MenuOrdenerTest extends BaseMenuTest
             ],
             1 => [
                 'id' => $menuItem1->id,
-            ]
+            ],
         ];
 
         // Run
@@ -115,7 +115,7 @@ class MenuOrdenerTest extends BaseMenuTest
             ],
             1 => [
                 'id' => $menuItem2->id,
-            ]
+            ],
         ];
 
         // Run

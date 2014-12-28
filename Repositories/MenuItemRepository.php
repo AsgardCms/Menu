@@ -7,7 +7,7 @@ interface MenuItemRepository extends BaseRepository
     /**
      * Get online root elements
      *
-     * @param int $menuId
+     * @param  int    $menuId
      * @return object
      */
     public function rootsForMenu($menuId);
@@ -15,7 +15,7 @@ interface MenuItemRepository extends BaseRepository
     /**
      * Get all root elements
      *
-     * @param int $menuId
+     * @param  int    $menuId
      * @return object
      */
     public function allRootsForMenu($menuId);
@@ -28,7 +28,7 @@ interface MenuItemRepository extends BaseRepository
 
     /**
      * Get the root menu item for the given menu id
-     * @param int $menuId
+     * @param  int    $menuId
      * @return object
      */
     public function getRootForMenu($menuId);
@@ -36,14 +36,14 @@ interface MenuItemRepository extends BaseRepository
     /**
      * Return a complete tree for the given menu id
      *
-     * @param int $menuId
+     * @param  int    $menuId
      * @return object
      */
     public function getTreeForMenu($menuId);
 
     /**
-     * @param string $uri
-     * @param string $locale
+     * @param  string $uri
+     * @param  string $locale
      * @return object
      */
     public function findByUriInLanguage($uri, $locale);

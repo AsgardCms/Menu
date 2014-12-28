@@ -35,7 +35,7 @@
                     </thead>
                     <tbody>
                     <?php if (isset($menus)): ?>
-                        <?php foreach($menus as $menu): ?>
+                        <?php foreach ($menus as $menu): ?>
                             <tr>
                                 <td>
                                     <a href="{{ URL::route('dashboard.menu.edit', [$menu->id]) }}">
@@ -72,7 +72,7 @@
     </div>
 </div>
 <?php if (isset($menus)): ?>
-    <?php foreach($menus as $menu): ?>
+    <?php foreach ($menus as $menu): ?>
     <!-- Modal -->
     <div class="modal fade" id="confirmation-{{ $menu->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

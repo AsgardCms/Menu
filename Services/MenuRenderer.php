@@ -1,6 +1,5 @@
 <?php namespace Modules\Menu\Services;
 
-use Baum\Node;
 use Illuminate\Support\Facades\URL;
 
 class MenuRenderer
@@ -49,7 +48,7 @@ class MenuRenderer
             $this->menu .= "<li class=\"dd-item\" data-id=\"{$item->id}\">";
             $this->menu .= '<a class="btn btn-sm btn-info"
                                    style="float:left; margin-right: 15px;"
-                                   href="' . URL::route('dashboard.menuitem.edit', [$this->menuId, $item->id]) . '">
+                                   href="'.URL::route('dashboard.menuitem.edit', [$this->menuId, $item->id]).'">
                                    Edit</a>';
             $this->menu .= "<div class=\"dd-handle\">{$item->title}</div>";
 

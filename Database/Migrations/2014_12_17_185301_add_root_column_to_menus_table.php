@@ -5,29 +5,27 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddRootColumnToMenusTable extends Migration
 {
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('menuitems', function(Blueprint $table)
-		{
-			$table->boolean('is_root')->default(0);
-		});
-	}
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('menuitems', function (Blueprint $table) {
+            $table->boolean('is_root')->default(0);
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::table('menuitems', function(Blueprint $table)
-		{
-			$table->dropColumn('is_root');
-		});
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('menuitems', function (Blueprint $table) {
+            $table->dropColumn('is_root');
+        });
+    }
 }

@@ -22,7 +22,7 @@ class MenuService
 
     /**
      * @param MenuItemRepository $menuItem
-     * @param Repository $cache
+     * @param Repository         $cache
      */
     public function __construct(MenuItemRepository $menuItem, Repository $cache)
     {
@@ -41,7 +41,7 @@ class MenuService
         $this->menuItem = $this->menuItemRepository->find($item['id']);
         $rootItem = $this->menuItemRepository->getRootForMenu($this->menuItem->menu_id);
 
-        if ( ! $this->menuItem->isRoot() && $this->menuItem->parent_id != $rootItem->parent_id) {
+        if (! $this->menuItem->isRoot() && $this->menuItem->parent_id != $rootItem->parent_id) {
             $this->savePosition($this->menuItem, $position);
             $this->menuItem->makeChildOf($rootItem);
         }
@@ -90,6 +90,7 @@ class MenuService
     private function savePosition($item, $position)
     {
         $item->position = $position;
+
         return $item->save();
     }
 }

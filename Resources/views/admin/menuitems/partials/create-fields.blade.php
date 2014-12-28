@@ -2,7 +2,7 @@
     <label for="page">{{ trans('menu::menu-items.form.page') }}</label>
     <select class="form-control" name="page_id" id="page">
         <option value=""></option>
-        <?php foreach($pages as $page): ?>
+        <?php foreach ($pages as $page): ?>
             <option value="{{ $page->id }}">{{ $page->title }}</option>
         <?php endforeach; ?>
     </select>
@@ -12,7 +12,7 @@
     <label for="module">{{ trans('menu::menu-items.form.module') }}</label>
     <select class="form-control" name="module_name" id="module">
         <option value=""></option>
-        <?php foreach(Module::enabled() as $module): ?>
+        <?php foreach (Module::enabled() as $module): ?>
             <option value="{{ strtolower($module->getName()) }}">{{ $module }}</option>
         <?php endforeach; ?>
     </select>

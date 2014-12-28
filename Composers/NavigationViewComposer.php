@@ -38,7 +38,7 @@ class NavigationViewComposer
     /**
      * Add a menu item to the menu
      *
-     * @param object $item
+     * @param object  $item
      * @param Builder $menu
      */
     public function addItemToMenu($item, Builder $menu)
@@ -72,7 +72,7 @@ class NavigationViewComposer
     /**
      * Add children to the given menu recursively
      *
-     * @param object $child
+     * @param object   $child
      * @param MenuItem $sub
      */
     private function addSubItemToMenu($child, MenuItem $sub)
@@ -87,7 +87,7 @@ class NavigationViewComposer
     /**
      * Check if the given menu item has children
      *
-     * @param object $item
+     * @param  object $item
      * @return bool
      */
     private function hasChildren($item)

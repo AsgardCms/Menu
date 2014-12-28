@@ -20,7 +20,7 @@ class CacheMenuItemDecorator extends BaseCacheDecorator implements MenuItemRepos
     /**
      * Get all root elements
      *
-     * @param int $menuId
+     * @param  int   $menuId
      * @return mixed
      */
     public function rootsForMenu($menuId)
@@ -53,7 +53,7 @@ class CacheMenuItemDecorator extends BaseCacheDecorator implements MenuItemRepos
     /**
      * Get the root menu item for the given menu id
      *
-     * @param int $menuId
+     * @param  int    $menuId
      * @return object
      */
     public function getRootForMenu($menuId)
@@ -70,7 +70,7 @@ class CacheMenuItemDecorator extends BaseCacheDecorator implements MenuItemRepos
     /**
      * Return a complete tree for the given menu id
      *
-     * @param int $menuId
+     * @param  int    $menuId
      * @return object
      */
     public function getTreeForMenu($menuId)

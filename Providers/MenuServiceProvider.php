@@ -42,8 +42,8 @@ class MenuServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             'Modules\Menu\Repositories\MenuRepository',
-            function() {
-                $repository = new EloquentMenuRepository(new Menu);
+            function () {
+                $repository = new EloquentMenuRepository(new Menu());
 
                 if (! Config::get('app.cache')) {
                     return $repository;
@@ -53,5 +53,4 @@ class MenuServiceProvider extends ServiceProvider
             }
         );
     }
-
 }
