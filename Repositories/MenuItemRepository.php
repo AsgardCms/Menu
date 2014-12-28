@@ -5,10 +5,20 @@ use Modules\Core\Repositories\BaseRepository;
 interface MenuItemRepository extends BaseRepository
 {
     /**
-     * Get all root elements
-     * @return mixed
+     * Get online root elements
+     *
+     * @param int $menuId
+     * @return object
      */
     public function rootsForMenu($menuId);
+
+    /**
+     * Get all root elements
+     *
+     * @param int $menuId
+     * @return object
+     */
+    public function allRootsForMenu($menuId);
 
     /**
      * Get the menu items ready for routes

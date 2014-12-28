@@ -30,12 +30,29 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
         return $menuItem;
     }
 
+    /**
+     * Get online root elements
+     *
+     * @param int $menuId
+     * @return object
+     */
     public function rootsForMenu($menuId)
     {
         return $this->model->whereHas('translations', function (Builder $q) {
             $q->where('status', 1);
             $q->where('locale', App::getLocale());
         })->with('translations')->whereMenuId($menuId)->orderBy('position')->get();
+    }
+
+    /**
+     * Get all root elements
+     *
+     * @param int $menuId
+     * @return object
+     */
+    public function allRootsForMenu($menuId)
+    {
+        return $this->model->with('translations')->whereMenuId($menuId)->orderBy('position')->get();
     }
 
     /**
