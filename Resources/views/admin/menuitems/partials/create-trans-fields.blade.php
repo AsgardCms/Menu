@@ -11,6 +11,12 @@
         {!! $errors->first("{$lang}[uri]", '<span class="help-block">:message</span>') !!}
     </div>
 </div>
+<div class="form-group{{ $errors->has("{$lang}[url]") ? ' has-error' : '' }}">
+    {!! Form::label("{$lang}[url]", trans('menu::menu.form.url')) !!}
+    {!! Form::text("{$lang}[url]", Input::old("{$lang}[url]"), ['class' => 'form-control', 'placeholder' => trans('menu::menu.form.url')]) !!}
+    {!! $errors->first("{$lang}[url]", '<span class="help-block">:message</span>') !!}
+</div>
+
 <div class="checkbox">
     <label for="{{$lang}}[status]">
         <input id="{{$lang}}[status]"

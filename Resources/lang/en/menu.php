@@ -28,6 +28,7 @@ return [
         'name' => 'Name',
         'status' => 'Online',
         'uri' => 'URI',
+        'url' => 'URL',
         'primary' => 'Primary menu (used for front-end routing)',
     ]
 ];
