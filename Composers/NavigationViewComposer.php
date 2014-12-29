@@ -46,10 +46,12 @@ class NavigationViewComposer
         if ($this->hasChildren($item)) {
             $this->addChildrenToMenu($item->title, $item->children, $menu);
         } else {
-            $menu->add([
-                'url' => $item->uri,
-                'title' => $item->title,
-            ]);
+            $target = $item->uri ?: $item->url;
+            $menu->url(
+                $target,
+                $item->title,
+                ['target' => $item->target]
+            );
         }
     }
 
