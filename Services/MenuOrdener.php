@@ -1,5 +1,6 @@
 <?php namespace Modules\Menu\Services;
 
+use Modules\Menu\Entities\Menuitem;
 use Modules\Menu\Repositories\MenuItemRepository;
 
 class MenuOrdener
@@ -43,7 +44,11 @@ class MenuOrdener
         }
     }
 
-    private function handleChildrenForParent($parent, $children)
+    /**
+     * @param Menuitem $parent
+     * @param array    $children
+     */
+    private function handleChildrenForParent(Menuitem $parent, array $children)
     {
         foreach ($children as $position => $item) {
             $menuItem = $this->menuItemRepository->find($item['id']);

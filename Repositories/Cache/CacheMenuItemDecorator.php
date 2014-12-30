@@ -87,7 +87,7 @@ class CacheMenuItemDecorator extends BaseCacheDecorator implements MenuItemRepos
     /**
      * Get all root elements
      *
-     * @param  int $menuId
+     * @param  int    $menuId
      * @return object
      */
     public function allRootsForMenu($menuId)
