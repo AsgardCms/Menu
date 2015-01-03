@@ -6,7 +6,7 @@
 </h1>
 <ol class="breadcrumb">
     <li><a href="{{ URL::route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-    <li><a href="{{ URL::route('dashboard.menu.index') }}">{{ trans('menu::menu.breadcrumb.menu') }}</a></li>
+    <li><a href="{{ URL::route('admin.menu.menu.index') }}">{{ trans('menu::menu.breadcrumb.menu') }}</a></li>
     <li>{{ trans('menu::menu.breadcrumb.edit menu') }}</li>
 </ol>
 @stop
@@ -17,7 +17,7 @@
 @stop
 
 @section('content')
-{!! Form::open(['route' => ['dashboard.menu.update', $menu->id], 'method' => 'put']) !!}
+{!! Form::open(['route' => ['admin.menu.menu.update', $menu->id], 'method' => 'put']) !!}
 <div class="row">
     <div class="col-md-6">
         <div class="row">
@@ -71,7 +71,7 @@
         </div>
         <div class="box-footer">
             <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
-            <a class="btn btn-danger pull-right btn-flat" href="{{ URL::route('dashboard.menu.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+            <a class="btn btn-danger pull-right btn-flat" href="{{ URL::route('admin.menu.menu.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
         </div>
     </div>
 </div>

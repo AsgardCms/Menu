@@ -61,7 +61,7 @@ class MenuController extends AdminBaseController
 
         Flash::success(trans('menu::messages.menu created'));
 
-        return $this->redirector->route('dashboard.menu.index');
+        return $this->redirector->route('admin.menu.menu.index');
     }
 
     public function edit(Menu $menu)
@@ -79,7 +79,7 @@ class MenuController extends AdminBaseController
 
         Flash::success(trans('menu::messages.menu updated'));
 
-        return $this->redirector->route('dashboard.menu.index');
+        return $this->redirector->route('admin.menu.menu.index');
     }
 
     public function destroy(Menu $menu)
@@ -88,6 +88,6 @@ class MenuController extends AdminBaseController
 
         Flash::success(trans('menu::messages.menu deleted'));
 
-        return $this->redirector->route('dashboard.menu.index');
+        return $this->redirector->route('admin.menu.menu.index');
     }
 }

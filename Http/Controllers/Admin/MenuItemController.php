@@ -45,7 +45,7 @@ class MenuItemController
 
         Flash::success(trans('menu::messages.menuitem created'));
 
-        return $this->redirector->route('dashboard.menu.edit', [$menu->id]);
+        return $this->redirector->route('admin.menu.menu.edit', [$menu->id]);
     }
 
     public function edit(Menu $menu, Menuitem $menuItem)
@@ -61,7 +61,7 @@ class MenuItemController
 
         Flash::success(trans('menu::messages.menuitem updated'));
 
-        return $this->redirector->route('dashboard.menu.edit', [$menu->id]);
+        return $this->redirector->route('admin.menu.menu.edit', [$menu->id]);
     }
 
     public function destroy(Menu $menu, Menuitem $menuItem)
@@ -70,7 +70,7 @@ class MenuItemController
 
         Flash::success(trans('menu::messages.menuitem deleted'));
 
-        return $this->redirector->route('dashboard.menu.edit', [$menu->id]);
+        return $this->redirector->route('admin.menu.menu.edit', [$menu->id]);
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 return [
-    'menus' => [
+    'menu.menus' => [
         'index',
         'create',
         'store',
@@ -8,7 +8,7 @@ return [
         'update',
         'destroy',
     ],
-    'menuitem' => [
+    'menu.menuitem' => [
         'index',
         'create',
         'store',
