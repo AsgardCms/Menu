@@ -6,7 +6,7 @@ $router->model('menus', 'Modules\Menu\Entities\Menu');
 $router->model('menuitem', 'Modules\Menu\Entities\Menuitem');
 
 $router->group(['prefix' => LaravelLocalization::setLocale(), 'before' => 'LaravelLocalizationRedirectFilter|auth.admin|permissions'], function (Router $router) {
-    $router->group(['prefix' => Config::get('core::core.admin-prefix') . '/menu', 'namespace' => 'Modules\Menu\Http\Controllers'], function (Router $router) {
+    $router->group(['prefix' => Config::get('core::core.admin-prefix').'/menu', 'namespace' => 'Modules\Menu\Http\Controllers'], function (Router $router) {
         $router->resource('menus', 'Admin\MenuController', ['except' => ['show'], 'names' => [
             'index' => 'admin.menu.menu.index',
             'create' => 'admin.menu.menu.create',
