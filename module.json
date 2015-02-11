@@ -9,7 +9,6 @@
   "providers": [
     "Modules\\Menu\\Providers\\RouteServiceProvider",
     "Modules\\Menu\\Providers\\MenuServiceProvider",
-    "Baum\\BaumServiceProvider",
     "Pingpong\\Menus\\MenusServiceProvider"
   ],
   "aliases": {
