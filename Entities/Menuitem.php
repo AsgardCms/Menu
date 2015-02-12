@@ -49,5 +49,6 @@ class Menuitem extends Model
     public function makeChildOf($rootItem)
     {
         $this->parent_id = $rootItem->id;
+        $this->save();
     }
 }
