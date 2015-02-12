@@ -45,4 +45,9 @@ class Menuitem extends Model
     {
         return new NestedCollection($models);
     }
+
+    public function makeChildOf($rootItem)
+    {
+        $this->parent_id = $rootItem->id;
+    }
 }
