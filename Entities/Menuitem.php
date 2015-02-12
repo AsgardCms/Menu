@@ -46,7 +46,11 @@ class Menuitem extends Model
         return new NestedCollection($models);
     }
 
-    public function makeChildOf($rootItem)
+    /**
+     * Make the current menu item child of the given root item
+     * @param Menuitem $rootItem
+     */
+    public function makeChildOf(Menuitem $rootItem)
     {
         $this->parent_id = $rootItem->id;
         $this->save();
