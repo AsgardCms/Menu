@@ -50,8 +50,9 @@ class MenuRenderer
             $editLink = URL::route('dashboard.menuitem.edit', [$this->menuId, $item->id]);
             $removeLink = URL::route('dashboard.menuitem.destroy', [$this->menuId, $item->id]);
             $removeFormOpenTag = Form::open(['url' => $removeLink, 'method' => 'delete']);
+            $style = $item->isRoot() ? 'none' : 'inline';
             $this->menu .= <<<HTML
-<div class="btn-group" role="group" aria-label="Action buttons" style="display: inline">
+<div class="btn-group" role="group" aria-label="Action buttons" style="display: {$style}">
     <a class="btn btn-sm btn-info" style="float:left;" href="{$editLink}">
         <i class="fa fa-pencil"></i>
     </a>
@@ -62,7 +63,8 @@ class MenuRenderer
     </form>
 </div>
 HTML;
-            $this->menu .= "<div class=\"dd-handle\">{$item->title}</div>";
+            $handleClass = $item->isRoot() ? 'dd-handle-root' : 'dd-handle';
+            $this->menu .= "<div class=\"{$handleClass}\">{$item->title}</div>";
 
             if ($this->hasChildren($item)) {
                 $this->generateHtmlFor($item->children);
