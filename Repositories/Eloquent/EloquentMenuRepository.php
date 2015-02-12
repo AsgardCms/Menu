@@ -10,9 +10,7 @@ class EloquentMenuRepository extends EloquentBaseRepository implements MenuRepos
     {
         $menu = $this->model->create($data);
 
-        $this->raise(new MenuWasCreated($menu));
-
-        $this->dispatchEventsFor($this);
+        event(new MenuWasCreated($menu));
 
         return $menu;
     }
