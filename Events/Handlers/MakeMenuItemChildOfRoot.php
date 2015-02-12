@@ -1,10 +1,9 @@
-<?php namespace Modules\Menu\Listeners;
+<?php namespace Modules\Menu\Events\Handlers;
 
-use Laracasts\Commander\Events\EventListener;
 use Modules\Menu\Events\MenuItemWasCreated;
 use Modules\Menu\Repositories\MenuItemRepository;
 
-class MakeMenuItemChildOfRoot extends EventListener
+class MakeMenuItemChildOfRoot
 {
     /**
      * @var MenuItemRepository
