@@ -55,4 +55,13 @@ class Menuitem extends Model
         $this->parent_id = $rootItem->id;
         $this->save();
     }
+
+    /**
+     * Check if the current menu item is the root
+     * @return bool
+     */
+    public function isRoot()
+    {
+        return (bool) $this->is_root;
+    }
 }
