@@ -29,7 +29,6 @@ class RootMenuItemCreator
             ],
         ];
 
-        $menuItem = $this->menuItem->create($data);
-        $menuItem->makeRoot();
+        $this->menuItem->create($data);
     }
 }
