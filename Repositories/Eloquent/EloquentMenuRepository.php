@@ -2,14 +2,10 @@
 
 use Modules\Menu\Events\MenuWasCreated;
 use Modules\Menu\Repositories\MenuRepository;
-use Laracasts\Commander\Events\EventGenerator;
-use Laracasts\Commander\Events\DispatchableTrait;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentMenuRepository extends EloquentBaseRepository implements MenuRepository
 {
-    use EventGenerator, DispatchableTrait;
-
     public function create($data)
     {
         $menu = $this->model->create($data);

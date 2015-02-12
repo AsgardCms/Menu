@@ -3,22 +3,17 @@
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
-use Laracasts\Commander\Events\EventGenerator;
-use Laracasts\Commander\Events\DispatchableTrait;
 use Modules\Menu\Events\MenuItemWasCreated;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuItemRepository
 {
-    use EventGenerator, DispatchableTrait;
-
     public function create($data)
     {
         $menuItem = $this->model->create($data);
 
-        $this->raise(new MenuItemWasCreated($menuItem));
-        $this->dispatchEventsFor($this);
+        event(new MenuItemWasCreated($menuItem));
 
         return $menuItem;
     }
