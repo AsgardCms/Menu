@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\Redirector;
 use Laracasts\Flash\Flash;
+use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Menu\Entities\Menu;
 use Modules\Menu\Entities\Menuitem;
 use Modules\Menu\Http\Requests\CreateMenuItemRequest;
@@ -10,7 +11,7 @@ use Modules\Menu\Http\Requests\UpdateMenuItemRequest;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Page\Repositories\PageRepository;
 
-class MenuItemController
+class MenuItemController extends AdminBaseController
 {
     /**
      * @var MenuItemRepository
