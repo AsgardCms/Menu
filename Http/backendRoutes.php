@@ -15,7 +15,7 @@ $router->group(['prefix' => '/menu'], function (Router $router) {
             'edit' => 'admin.menu.menu.edit',
             'update' => 'admin.menu.menu.update',
             'destroy' => 'admin.menu.menu.destroy',
-        ]
+        ],
     ]);
 
     $router->resource('menus.menuitem', 'MenuItemController', [
@@ -27,6 +27,6 @@ $router->group(['prefix' => '/menu'], function (Router $router) {
             'edit' => 'dashboard.menuitem.edit',
             'update' => 'dashboard.menuitem.update',
             'destroy' => 'dashboard.menuitem.destroy',
-        ]
+        ],
     ]);
 });

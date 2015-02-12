@@ -29,5 +29,5 @@ return [
         'status' => 'En ligne',
         'uri' => 'URI',
         'primary' => 'Menu principal (utiliser pour le routage front-end)',
-    ]
+    ],
 ];

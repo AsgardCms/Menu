@@ -30,5 +30,5 @@ return [
         'uri' => 'URI',
         'url' => 'URL',
         'primary' => 'Primary menu (used for front-end routing)',
-    ]
+    ],
 ];

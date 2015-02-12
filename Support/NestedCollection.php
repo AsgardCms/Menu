@@ -27,7 +27,7 @@ class NestedCollection extends Collection
     public function nest()
     {
         $parentKey = $this->parentKey;
-        if ( ! $parentKey) {
+        if (! $parentKey) {
             return $this;
         }
         // Set id as keys
@@ -35,7 +35,7 @@ class NestedCollection extends Collection
         $keysToDelete = array();
         // add empty children collection.
         $this->each(function ($item) {
-            if ( ! $item->items) {
+            if (! $item->items) {
                 $item->items = app('Illuminate\Support\Collection');
             }
         });
@@ -56,10 +56,10 @@ class NestedCollection extends Collection
      * Recursive function that flatten a nested Collection
      * with characters (default is four spaces)
      * @param  BaseCollection|null $collection
-     * @param  integer $level
-     * @param  array &$flattened
-     * @param  string $key
-     * @param  string $indentChars
+     * @param  integer             $level
+     * @param  array               &$flattened
+     * @param  string              $key
+     * @param  string              $indentChars
      * @return array
      */
     public function listsFlattened(
@@ -68,11 +68,12 @@ class NestedCollection extends Collection
     ) {
         $collection = $collection ?: $this;
         foreach ($collection as $item) {
-            $flattened[str_repeat($indentChars, $level) . $item->$key] = $item->id;
+            $flattened[str_repeat($indentChars, $level).$item->$key] = $item->id;
             if ($item->items) {
                 $this->listsFlattened($item->items, $level + 1, $flattened);
             }
         }
+
         return $flattened;
     }
 
