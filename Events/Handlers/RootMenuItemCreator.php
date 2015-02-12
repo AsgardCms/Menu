@@ -15,7 +15,7 @@ class RootMenuItemCreator
         $this->menuItem = $menuItem;
     }
 
-    public function whenMenuWasCreated(MenuWasCreated $event)
+    public function handle(MenuWasCreated $event)
     {
         $data = [
             'menu_id' => $event->menu->id,

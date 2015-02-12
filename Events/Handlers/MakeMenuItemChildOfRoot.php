@@ -15,7 +15,7 @@ class MakeMenuItemChildOfRoot
         $this->menuItem = $menuItem;
     }
 
-    public function whenMenuItemWasCreated(MenuItemWasCreated $event)
+    public function handle(MenuItemWasCreated $event)
     {
         $root = $this->menuItem->getRootForMenu($event->menuItem->menu_id);
 
