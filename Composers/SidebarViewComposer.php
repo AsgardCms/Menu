@@ -10,6 +10,7 @@ class SidebarViewComposer extends BaseSidebarViewComposer
     public function compose(View $view)
     {
         $view->sidebar->group('Menus', function (SidebarGroup $group) {
+            $group->weight = 3;
             $group->enabled = false;
 
             $group->addItem('Menus', function (SidebarItem $item) {
