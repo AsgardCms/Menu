@@ -1,8 +1,8 @@
 <?php namespace Modules\Menu\Repositories\Eloquent;
 
+use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 use Modules\Menu\Events\MenuWasCreated;
 use Modules\Menu\Repositories\MenuRepository;
-use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentMenuRepository extends EloquentBaseRepository implements MenuRepository
 {

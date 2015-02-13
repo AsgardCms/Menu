@@ -1,10 +1,10 @@
 <?php namespace Modules\Menu\Composers;
 
-use Pingpong\Menus\Builder;
-use Pingpong\Menus\MenuItem;
-use Pingpong\Menus\Facades\Menu;
-use Modules\Menu\Repositories\MenuRepository;
 use Modules\Menu\Repositories\MenuItemRepository;
+use Modules\Menu\Repositories\MenuRepository;
+use Pingpong\Menus\Builder;
+use Pingpong\Menus\Facades\Menu;
+use Pingpong\Menus\MenuItem;
 
 class NavigationViewComposer
 {

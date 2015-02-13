@@ -1,7 +1,7 @@
 <?php namespace Modules\Menu\Services;
 
-use Illuminate\Support\Facades\URL;
 use Illuminate\Html\FormFacade as Form;
+use Illuminate\Support\Facades\URL;
 
 class MenuRenderer
 {

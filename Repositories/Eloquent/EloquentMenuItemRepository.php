@@ -3,9 +3,9 @@
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 use Modules\Menu\Events\MenuItemWasCreated;
 use Modules\Menu\Repositories\MenuItemRepository;
-use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuItemRepository
 {

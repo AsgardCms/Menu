@@ -68,7 +68,7 @@ class NestedCollection extends Collection
     ) {
         $collection = $collection ?: $this;
         foreach ($collection as $item) {
-            $flattened[str_repeat($indentChars, $level).$item->$key] = $item->id;
+            $flattened[str_repeat($indentChars, $level) . $item->$key] = $item->id;
             if ($item->items) {
                 $this->listsFlattened($item->items, $level + 1, $flattened);
             }
