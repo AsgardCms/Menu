@@ -81,6 +81,12 @@
 @section('scripts')
 <script>
 $( document ).ready(function() {
+    $(document).keypressAction({
+        actions: [
+            { key: 99, route: "<?= route('dashboard.menuitem.create', [$menu->id]) ?>" }
+        ]
+    });
+
     $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
         checkboxClass: 'icheckbox_flat-blue',
         radioClass: 'iradio_flat-blue'

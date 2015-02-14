@@ -100,6 +100,13 @@
 @section('scripts')
 <?php $locale = App::getLocale(); ?>
 <script type="text/javascript">
+    $( document ).ready(function() {
+        $(document).keypressAction({
+            actions: [
+                { key: 99, route: "<?= route('admin.menu.menu.create') ?>" }
+            ]
+        });
+    });
     $(function () {
         $('.data-table').dataTable({
             "paginate": true,
