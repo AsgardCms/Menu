@@ -97,6 +97,18 @@
 <?php endif; ?>
 @stop
 
+@section('footer')
+    <p class="text-muted">
+        <a data-toggle="modal" data-target="#keyboardShortcutsModal"><i class="fa fa-keyboard-o"></i></a>
+    </p>
+@stop
+@section('shortcuts')
+    <dl class="dl-horizontal">
+        <dt><code>c</code></dt>
+        <dd>{{ trans('menu::menu.titles.create menu') }}</dd>
+    </dl>
+@stop
+
 @section('scripts')
 <?php $locale = App::getLocale(); ?>
 <script type="text/javascript">
