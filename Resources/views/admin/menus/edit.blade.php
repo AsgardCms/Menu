@@ -12,8 +12,8 @@
 @stop
 
 @section('styles')
-<link href="{!! Module::asset('core:css/vendor/iCheck/flat/blue.css') !!}" rel="stylesheet" type="text/css" />
-<link href="{!! Module::asset('menu:css/nestable.css') !!}" rel="stylesheet" type="text/css" />
+    {!! Theme::style('css/vendor/iCheck/flat/blue.css') !!}
+    <link href="{!! Module::asset('menu:css/nestable.css') !!}" rel="stylesheet" type="text/css" />
 @stop
 
 @section('content')
