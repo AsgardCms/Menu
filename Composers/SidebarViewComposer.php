@@ -9,14 +9,11 @@ class SidebarViewComposer extends BaseSidebarViewComposer
 {
     public function compose(View $view)
     {
-        $view->sidebar->group('Menus', function (SidebarGroup $group) {
-            $group->weight = 3;
-            $group->enabled = false;
-
-            $group->addItem('Menus', function (SidebarItem $item) {
-                $item->route('admin.menu.menu.index');
+        $view->sidebar->group(trans('core::sidebar.content'), function (SidebarGroup $group) {
+            $group->addItem(trans('menu::menu.title'), function (SidebarItem $item) {
+                $item->weight = 3;
                 $item->icon = 'fa fa-bars';
-                $item->name = 'Menus';
+                $item->route('admin.menu.menu.index');
                 $item->authorize(
                     $this->auth->hasAccess('menu.menus.index')
                 );
