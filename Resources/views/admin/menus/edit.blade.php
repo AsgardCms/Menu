@@ -95,7 +95,7 @@
 $( document ).ready(function() {
     $(document).keypressAction({
         actions: [
-            { key: 99, route: "<?= route('dashboard.menuitem.create', [$menu->id]) ?>" }
+            { key: 'c', route: "<?= route('dashboard.menuitem.create', [$menu->id]) ?>" }
         ]
     });
 
