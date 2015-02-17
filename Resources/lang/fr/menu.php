@@ -31,4 +31,7 @@ return [
         'uri' => 'URI',
         'primary' => 'Menu principal (utiliser pour le routage front-end)',
     ],
+    'navigation' => [
+        'back to index' => 'Retour vers l\index des menus'
+    ]
 ];

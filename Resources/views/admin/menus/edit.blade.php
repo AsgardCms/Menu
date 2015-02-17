@@ -87,6 +87,8 @@
     <dl class="dl-horizontal">
         <dt><code>c</code></dt>
         <dd>{{ trans('menu::menu.titles.create menu item') }}</dd>
+        <dt><code>b</code></dt>
+        <dd>{{ trans('menu::menu.navigation.back to index') }}</dd>
     </dl>
 @stop
 
@@ -95,7 +97,8 @@
 $( document ).ready(function() {
     $(document).keypressAction({
         actions: [
-            { key: 'c', route: "<?= route('dashboard.menuitem.create', [$menu->id]) ?>" }
+            { key: 'c', route: "<?= route('dashboard.menuitem.create', [$menu->id]) ?>" },
+            { key: 'b', route: "<?= route('admin.menu.menu.index') ?>" }
         ]
     });
 
