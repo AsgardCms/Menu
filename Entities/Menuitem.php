@@ -2,11 +2,11 @@
 
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Menu\Support\NestedCollection;
+use TypiCMS\NestableTrait;
 
 class Menuitem extends Model
 {
-    use Translatable;
+    use Translatable, NestableTrait;
 
     public $translatedAttributes = ['title', 'uri', 'url', 'status'];
     protected $fillable = [
@@ -41,10 +41,10 @@ class Menuitem extends Model
      * @param  array            $models
      * @return NestedCollection
      */
-    public function newCollection(array $models = array())
-    {
-        return new NestedCollection($models);
-    }
+//    public function newCollection(array $models = array())
+//    {
+//        return new NestableCollection($models);
+//    }
 
     /**
      * Make the current menu item child of the given root item
