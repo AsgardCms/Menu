@@ -15,7 +15,7 @@ class CreateMenuitemsTable extends Migration
         Schema::create('menu__menuitems', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('menu_id')->unsigned();
-            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
+            $table->foreign('menu_id')->references('id')->on('menu__menus')->onDelete('cascade');
             $table->integer('page_id')->unsigned()->nullable();
             $table->integer('position')->unsigned()->default(0);
             $table->string('target', 10)->nullable();
