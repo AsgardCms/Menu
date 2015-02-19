@@ -21,7 +21,7 @@ class CreateMenuTranslationsTable extends Migration
             $table->string('title');
 
             $table->unique(['menu_id', 'locale']);
-            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
+            $table->foreign('menu_id')->references('id')->on('menu__menus')->onDelete('cascade');
             $table->timestamps();
         });
     }

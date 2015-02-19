@@ -23,7 +23,7 @@ class CreateMenuitemTranslationTable extends Migration
             $table->string('uri')->nullable();
 
             $table->unique(['menuitem_id', 'locale']);
-            $table->foreign('menuitem_id')->references('id')->on('menuitems')->onDelete('cascade');
+            $table->foreign('menuitem_id')->references('id')->on('menu__menuitems')->onDelete('cascade');
             $table->timestamps();
         });
     }
