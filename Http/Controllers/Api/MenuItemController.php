@@ -2,9 +2,10 @@
 
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Modules\Menu\Services\MenuOrdener;
 
-class MenuItemController
+class MenuItemController extends Controller
 {
     /**
      * @var Repository
@@ -29,6 +30,6 @@ class MenuItemController
     {
         $this->cache->tags('menuItems')->flush();
 
-        $this->menuOrdener->handle($request->all());
+        $this->menuOrdener->handle($request->get('menu'));
     }
 }
