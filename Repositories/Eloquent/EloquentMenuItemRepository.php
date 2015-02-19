@@ -57,17 +57,17 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
      */
     public function getForRoutes()
     {
-        $menuitems = DB::table('menus')
+        $menuitems = DB::table('menu__menus')
             ->select(
                 'primary',
-                'menuitems.id',
-                'menuitems.parent_id',
-                'menuitems.module_name',
-                'menuitem_translations.uri',
-                'menuitem_translations.locale'
+                'menu__menuitems.id',
+                'menu__menuitems.parent_id',
+                'menu__menuitems.module_name',
+                'menu__menuitem_translations.uri',
+                'menu__menuitem_translations.locale'
             )
-            ->join('menuitems', 'menus.id', '=', 'menuitems.menu_id')
-            ->join('menuitem_translations', 'menuitems.id', '=', 'menuitem_translations.menuitem_id')
+            ->join('menu__menuitems', 'menu__menus.id', '=', 'menu__menuitems.menu_id')
+            ->join('menu__menuitem_translations', 'menu__menuitems.id', '=', 'menu__menuitem_translations.menuitem_id')
             ->where('uri', '!=', '')
             ->where('module_name', '!=', '')
             ->where('status', '=', 1)

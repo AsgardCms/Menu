@@ -12,7 +12,7 @@ class CreateMenuitemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('menuitems', function (Blueprint $table) {
+        Schema::create('menu__menuitems', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('menu_id')->unsigned();
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
@@ -38,6 +38,6 @@ class CreateMenuitemsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('menuitems');
+        Schema::drop('menu__menuitems');
     }
 }

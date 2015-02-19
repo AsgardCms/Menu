@@ -12,7 +12,7 @@ class CreateMenuTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_translations', function (Blueprint $table) {
+        Schema::create('menu__menu_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('menu_id')->unsigned();
             $table->string('locale')->index();
@@ -33,6 +33,6 @@ class CreateMenuTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('menu_translations');
+        Schema::drop('menu__menu_translations');
     }
 }

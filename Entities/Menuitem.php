@@ -22,6 +22,7 @@ class Menuitem extends Model
         'status',
         'is_root',
     ];
+    protected $table = 'menu__menuitems';
 
     /**
      * For nested collection

@@ -12,7 +12,7 @@ class AddRootColumnToMenusTable extends Migration
      */
     public function up()
     {
-        Schema::table('menuitems', function (Blueprint $table) {
+        Schema::table('menu__menuitems', function (Blueprint $table) {
             $table->boolean('is_root')->default(0);
         });
     }
@@ -24,7 +24,7 @@ class AddRootColumnToMenusTable extends Migration
      */
     public function down()
     {
-        Schema::table('menuitems', function (Blueprint $table) {
+        Schema::table('menu__menuitems', function (Blueprint $table) {
             $table->dropColumn('is_root');
         });
     }

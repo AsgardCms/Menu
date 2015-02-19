@@ -14,6 +14,7 @@ class Menu extends Model
         'primary',
     ];
     public $translatedAttributes = ['title', 'status'];
+    protected $table = 'menu__menus';
 
     public function menuitems()
     {
