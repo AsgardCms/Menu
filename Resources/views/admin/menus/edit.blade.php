@@ -127,8 +127,7 @@ $( document ).ready(function() {
         $.ajax({
             type: 'POST',
             url: '/api/menuitem/update',
-            data: {menu: JSON.stringify(data), _token: '<?php echo csrf_token(); ?>'},
-            contentType: 'application/json;',
+            data: {'menu': JSON.stringify(data), '_token': '<?php echo csrf_token(); ?>'},
             dataType: 'json',
             success: function(data) {
 
