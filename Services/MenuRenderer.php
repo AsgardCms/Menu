@@ -67,7 +67,7 @@ HTML;
             $this->menu .= "<div class=\"{$handleClass}\">{$item->title}</div>";
 
             if ($this->hasChildren($item)) {
-                $this->generateHtmlFor($item->children);
+                $this->generateHtmlFor($item->items);
             }
 
             $this->menu .= '</li>';
@@ -81,6 +81,6 @@ HTML;
      */
     private function hasChildren($item)
     {
-        return !is_array($item->children);
+        return !is_array($item->items);
     }
 }
