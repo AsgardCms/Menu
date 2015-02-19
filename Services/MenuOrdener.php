@@ -23,7 +23,7 @@ class MenuOrdener
      */
     public function handle($data)
     {
-        $data = json_decode(json_encode(json_decode($data)), true);
+        $data = $this->convertToArray(json_decode($data));
 
         foreach ($data as $position => $item) {
             $this->order($position, $item);
@@ -93,5 +93,17 @@ class MenuOrdener
     private function makeItemChildOf($item, $parent_id)
     {
         $this->menuItemRepository->update($item, compact('parent_id'));
+    }
+
+    /**
+     * Convert the object to array
+     * @param $data
+     * @return array
+     */
+    private function convertToArray($data)
+    {
+        $data = json_decode(json_encode($data), true);
+
+        return $data;
     }
 }
