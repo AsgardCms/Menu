@@ -23,6 +23,8 @@ class MenuOrdener
      */
     public function handle($data)
     {
+        $data = json_decode(json_encode(json_decode($data)), true);
+
         foreach ($data as $position => $item) {
             $this->order($position, $item);
         }
