@@ -47,7 +47,7 @@ class EloquentMenuItemRepository extends EloquentBaseRepository implements MenuI
      */
     public function allRootsForMenu($menuId)
     {
-        return $this->model->with('translations')->whereMenuId($menuId)->orderBy('position')->get();
+        return $this->model->with('translations')->whereMenuId($menuId)->orderBy('parent_id')->orderBy('position')->get();
     }
 
     /**
