@@ -31,6 +31,7 @@ class MenuOrdenerTest extends BaseMenuTest
                 ],
             ],
         ];
+        $request = json_encode($request);
 
         // Run
         $this->menuOrdener->handle($request);
@@ -63,6 +64,7 @@ class MenuOrdenerTest extends BaseMenuTest
                 ],
             ],
         ];
+        $request = json_encode($request);
 
         // Run
         $this->menuOrdener->handle($request);
@@ -90,6 +92,7 @@ class MenuOrdenerTest extends BaseMenuTest
                 'id' => $menuItem1->id,
             ],
         ];
+        $request = json_encode($request);
 
         // Run
         $this->menuOrdener->handle($request);
@@ -117,6 +120,7 @@ class MenuOrdenerTest extends BaseMenuTest
                 'id' => $menuItem2->id,
             ],
         ];
+        $request = json_encode($request);
 
         // Run
         $this->menuOrdener->handle($request);
