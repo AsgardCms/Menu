@@ -48,7 +48,7 @@ class MenuServiceProvider extends ServiceProvider
             function () {
                 $repository = new EloquentMenuRepository(new Menu());
 
-                if (! Config::get('app.cache')) {
+                if (! config('app.cache')) {
                     return $repository;
                 }
 
