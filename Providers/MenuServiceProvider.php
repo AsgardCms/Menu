@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Modules\Menu\Entities\Menu;
+use Modules\Menu\Entities\Menuitem;
 use Modules\Menu\Repositories\Cache\CacheMenuDecorator;
+use Modules\Menu\Repositories\Cache\CacheMenuItemDecorator;
+use Modules\Menu\Repositories\Eloquent\EloquentMenuItemRepository;
 use Modules\Menu\Repositories\Eloquent\EloquentMenuRepository;
 
 class MenuServiceProvider extends ServiceProvider
@@ -45,11 +48,24 @@ class MenuServiceProvider extends ServiceProvider
             function () {
                 $repository = new EloquentMenuRepository(new Menu());
 
-                if (! Config::get('app.cache')) {
+                if (! config('app.cache')) {
                     return $repository;
                 }
 
                 return new CacheMenuDecorator($repository);
+            }
+        );
+
+        $this->app->bind(
+            'Modules\Menu\Repositories\MenuItemRepository',
+            function () {
+                $repository = new EloquentMenuItemRepository(new Menuitem());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new CacheMenuItemDecorator($repository);
             }
         );
     }
