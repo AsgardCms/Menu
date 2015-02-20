@@ -25,7 +25,19 @@
     "php": ">=5.4",
     "composer/installers": "~1.0",
     "pingpong/menus": "2.*@dev",
-    "typicms/nestablecollection": "dev-master"
+    "typicms/nestablecollection": "dev-master",
+    "asgardcms/core-module": "dev-develop"
   },
-  "minimum-stability": "dev"
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "orchestra/testbench": "~3.0"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Modules\\Menu\\": ".",
+      "Modules\\": "Modules/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
