@@ -47,6 +47,7 @@ abstract class BaseMenuTest extends TestCase
             'database' => ':memory:',
             'prefix' => '',
         ));
+        $app['config']->set('translatable.locales', ['en', 'fr']);
     }
 
     private function resetDatabase()
