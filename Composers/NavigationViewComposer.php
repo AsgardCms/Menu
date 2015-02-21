@@ -94,6 +94,6 @@ class NavigationViewComposer
      */
     private function hasChildren($item)
     {
-        return ! is_array($item->items);
+        return $item->items->count() > 0;
     }
 }
