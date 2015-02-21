@@ -8,7 +8,7 @@ class CreateMenuRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'primary' => 'unique:menus',
+            'primary' => 'unique:menu__menus',
         ];
     }
 

@@ -10,7 +10,7 @@ class UpdateMenuRequest extends FormRequest
 
         return [
             'name' => 'required',
-            'primary' => "unique:menus,primary,{$menu->id}",
+            'primary' => "unique:menu__menus,primary,{$menu->id}",
         ];
     }
 
