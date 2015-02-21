@@ -1,5 +1,6 @@
 <?php namespace Modules\Menu\Composers;
 
+use Modules\Menu\Entities\Menuitem as MenuitemEntity;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Menu\Repositories\MenuRepository;
 use Pingpong\Menus\Builder;
@@ -37,14 +38,13 @@ class NavigationViewComposer
 
     /**
      * Add a menu item to the menu
-     *
-     * @param object  $item
+     * @param MenuitemEntity $item
      * @param Builder $menu
      */
-    public function addItemToMenu($item, Builder $menu)
+    public function addItemToMenu(MenuitemEntity $item, Builder $menu)
     {
         if ($this->hasChildren($item)) {
-            $this->addChildrenToMenu($item->title, $item->children, $menu);
+            $this->addChildrenToMenu($item->title, $item->items, $menu);
         } else {
             $target = $item->uri ?: $item->url;
             $menu->url(
@@ -60,7 +60,7 @@ class NavigationViewComposer
      *
      * @param string $name
      * @param object $children
-     * @param object $menu
+     * @param Builder|MenuItem $menu
      */
     private function addChildrenToMenu($name, $children, $menu)
     {
@@ -74,15 +74,15 @@ class NavigationViewComposer
     /**
      * Add children to the given menu recursively
      *
-     * @param object   $child
+     * @param MenuitemEntity   $child
      * @param MenuItem $sub
      */
-    private function addSubItemToMenu($child, MenuItem $sub)
+    private function addSubItemToMenu(MenuitemEntity $child, MenuItem $sub)
     {
         $sub->url($child->uri, $child->title);
 
         if ($this->hasChildren($child)) {
-            $this->addChildrenToMenu($child->title, $child->children, $sub);
+            $this->addChildrenToMenu($child->title, $child->items, $sub);
         }
     }
 
@@ -94,6 +94,6 @@ class NavigationViewComposer
      */
     private function hasChildren($item)
     {
-        return ! is_array($item->children);
+        return ! is_array($item->items);
     }
 }
