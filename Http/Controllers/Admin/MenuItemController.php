@@ -28,6 +28,7 @@ class MenuItemController extends AdminBaseController
 
     public function __construct(MenuItemRepository $menuItem, Redirector $redirector, PageRepository $page)
     {
+        parent::__construct();
         $this->menuItem = $menuItem;
         $this->redirector = $redirector;
         $this->page = $page;
