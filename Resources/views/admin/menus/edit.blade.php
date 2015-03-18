@@ -27,14 +27,14 @@
                 </a>
             </div>
         </div>
-        <div class="box box-info" style="overflow: hidden;">
+        <div class="box box-primary" style="overflow: hidden;">
             <div class="box-body">
                 {!! $menuStructure !!}
             </div>
         </div>
     </div>
     <div class="col-md-6">
-        <div class="box box-info">
+        <div class="box box-primary">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
             </div>
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="box box-info">
+        <div class="box box-primary">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.non translatable fields') }}</h3>
             </div>
