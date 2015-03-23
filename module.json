@@ -1,9 +1,10 @@
 {
   "name": "Menu",
   "alias": "menu",
-  "description": "",
+  "description": "Managing menus.",
   "keywords": [
   ],
+  "version": "v0.1.0",
   "active": 1,
   "order": 1,
   "providers": [
