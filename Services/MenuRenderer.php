@@ -48,8 +48,6 @@ class MenuRenderer
         foreach ($items as $item) {
             $this->menu .= "<li class=\"dd-item\" data-id=\"{$item->id}\">";
             $editLink = URL::route('dashboard.menuitem.edit', [$this->menuId, $item->id]);
-            $removeLink = URL::route('dashboard.menuitem.destroy', [$this->menuId, $item->id]);
-            $removeFormOpenTag = Form::open(['url' => $removeLink, 'method' => 'delete']);
             $style = $item->isRoot() ? 'none' : 'inline';
             $this->menu .= <<<HTML
 <div class="btn-group" role="group" aria-label="Action buttons" style="display: {$style}">
