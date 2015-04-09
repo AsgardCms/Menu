@@ -56,11 +56,9 @@ class MenuRenderer
     <a class="btn btn-sm btn-info" style="float:left;" href="{$editLink}">
         <i class="fa fa-pencil"></i>
     </a>
-    {$removeFormOpenTag}
-        <button type="submit" class="btn btn-sm btn-danger" style="float:left; margin-right: 15px;">
-           <i class="fa fa-times"></i>
-        </button>
-    </form>
+    <a class="btn btn-sm btn-danger jsDeleteMenuItem" style="float:left; margin-right: 15px;" data-item-id="{$item->id}">
+       <i class="fa fa-times"></i>
+    </a>
 </div>
 HTML;
             $handleClass = $item->isRoot() ? 'dd-handle-root' : 'dd-handle';

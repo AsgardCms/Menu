@@ -136,4 +136,29 @@ $( document ).ready(function() {
     });
 });
 </script>
+<script>
+    $( document ).ready(function() {
+        $('.jsDeleteMenuItem').on('click', function(e) {
+            var self = $(this),
+                menuItemId = self.data('item-id');
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('api.menuitem.delete') }}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    menuitem: menuItemId
+                },
+                success: function(data) {
+                    if (! data.errors) {
+                        var elem = self.closest('li');
+                        elem.fadeOut()
+                        setTimeout(function(){
+                            elem.remove()
+                        }, 300);
+                    }
+                }
+            });
+        });
+    });
+</script>
 @stop
