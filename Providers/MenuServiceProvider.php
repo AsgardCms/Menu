@@ -36,15 +36,17 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $menu = $this->app->make('Modules\Menu\Repositories\MenuRepository');
-        $menuItem = $this->app->make('Modules\Menu\Repositories\MenuItemRepository');
-        foreach ($menu->all() as $menu) {
-            $menuTree = $menuItem->getTreeForMenu($menu->id);
-            MenuFacade::create($menu->name, function (Builder $menu) use ($menuTree) {
-                foreach ($menuTree as $menuItem) {
-                    $this->addItemToMenu($menuItem, $menu);
-                }
-            });
+        if ($this->isInstalled()) {
+            $menu = $this->app->make('Modules\Menu\Repositories\MenuRepository');
+            $menuItem = $this->app->make('Modules\Menu\Repositories\MenuItemRepository');
+            foreach ($menu->all() as $menu) {
+                $menuTree = $menuItem->getTreeForMenu($menu->id);
+                MenuFacade::create($menu->name, function (Builder $menu) use ($menuTree) {
+                    foreach ($menuTree as $menuItem) {
+                        $this->addItemToMenu($menuItem, $menu);
+                    }
+                });
+            }
         }
     }
 
@@ -148,5 +150,14 @@ class MenuServiceProvider extends ServiceProvider
     private function hasChildren($item)
     {
         return $item->items->count() > 0;
+    }
+
+    /**
+     * Check if AsgardCMS is installed
+     * @return bool
+     */
+    private function isInstalled()
+    {
+        return $this->app['files']->isFile(base_path('.env'));
     }
 }
