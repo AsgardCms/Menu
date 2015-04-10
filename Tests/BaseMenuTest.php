@@ -30,12 +30,20 @@ abstract class BaseMenuTest extends TestCase
 
     protected function getPackageProviders($app)
     {
-        return ['Modules\Menu\Providers\MenuServiceProvider'];
+        return [
+            'Pingpong\Modules\ModulesServiceProvider',
+            'Modules\Core\Providers\CoreServiceProvider',
+            'Modules\Menu\Providers\MenuServiceProvider',
+            'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
+        ];
     }
 
     protected function getPackageAliases($app)
     {
-        return ['Eloquent' => 'Illuminate\Database\Eloquent\Model'];
+        return [
+            'Eloquent' => 'Illuminate\Database\Eloquent\Model',
+            'LaravelLocalization' => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization',
+        ];
     }
 
     protected function getEnvironmentSetUp($app)
