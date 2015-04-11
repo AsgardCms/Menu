@@ -36,18 +36,7 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->isInstalled()) {
-            $menu = $this->app->make('Modules\Menu\Repositories\MenuRepository');
-            $menuItem = $this->app->make('Modules\Menu\Repositories\MenuItemRepository');
-            foreach ($menu->all() as $menu) {
-                $menuTree = $menuItem->getTreeForMenu($menu->id);
-                MenuFacade::create($menu->name, function (Builder $menu) use ($menuTree) {
-                    foreach ($menuTree as $menuItem) {
-                        $this->addItemToMenu($menuItem, $menu);
-                    }
-                });
-            }
-        }
+        $this->registerMenus();
     }
 
     /**
@@ -153,11 +142,22 @@ class MenuServiceProvider extends ServiceProvider
     }
 
     /**
-     * Check if AsgardCMS is installed
-     * @return bool
+     * Register the active menus
      */
-    private function isInstalled()
+    private function registerMenus()
     {
-        return $this->app['files']->isFile(base_path('.env'));
+        if (! $this->app['asgard.isInstalled']) {
+            return;
+        }
+        $menu = $this->app->make('Modules\Menu\Repositories\MenuRepository');
+        $menuItem = $this->app->make('Modules\Menu\Repositories\MenuItemRepository');
+        foreach ($menu->all() as $menu) {
+            $menuTree = $menuItem->getTreeForMenu($menu->id);
+            MenuFacade::create($menu->name, function (Builder $menu) use ($menuTree) {
+                foreach ($menuTree as $menuItem) {
+                    $this->addItemToMenu($menuItem, $menu);
+                }
+            });
+        }
     }
 }
