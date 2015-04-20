@@ -14,7 +14,7 @@
     "Pingpong\\Menus\\MenusServiceProvider"
   ],
   "aliases": {
-    "Menu": "Pingpong\\Menus\\Facades\\Menu"
+    "Menu": "Pingpong\\Menus\\MenuFacade"
   },
   "files": [
     "start.php",

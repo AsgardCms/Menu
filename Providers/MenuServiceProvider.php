@@ -8,8 +8,8 @@ use Modules\Menu\Repositories\Cache\CacheMenuDecorator;
 use Modules\Menu\Repositories\Cache\CacheMenuItemDecorator;
 use Modules\Menu\Repositories\Eloquent\EloquentMenuItemRepository;
 use Modules\Menu\Repositories\Eloquent\EloquentMenuRepository;
-use Pingpong\Menus\Builder;
-use Pingpong\Menus\Facades\Menu as MenuFacade;
+use Pingpong\Menus\MenuBuilder as Builder;
+use Pingpong\Menus\MenuFacade;
 use Pingpong\Menus\MenuItem as PingpongMenuItem;
 
 class MenuServiceProvider extends ServiceProvider
