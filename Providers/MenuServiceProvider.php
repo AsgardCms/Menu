@@ -151,7 +151,7 @@ class MenuServiceProvider extends ServiceProvider
         }
         $menu = $this->app->make('Modules\Menu\Repositories\MenuRepository');
         $menuItem = $this->app->make('Modules\Menu\Repositories\MenuItemRepository');
-        foreach ($menu->all() as $menu) {
+        foreach ($menu->allOnline() as $menu) {
             $menuTree = $menuItem->getTreeForMenu($menu->id);
             MenuFacade::create($menu->name, function (Builder $menu) use ($menuTree) {
                 foreach ($menuTree as $menuItem) {
