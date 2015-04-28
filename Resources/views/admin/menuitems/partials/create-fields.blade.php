@@ -9,16 +9,6 @@
 </div>
 
 <div class="form-group">
-    <label for="module">{{ trans('menu::menu-items.form.module') }}</label>
-    <select class="form-control" name="module_name" id="module">
-        <option value=""></option>
-        <?php foreach (Module::enabled() as $module): ?>
-            <option value="{{ strtolower($module->getName()) }}">{{ $module }}</option>
-        <?php endforeach; ?>
-    </select>
-</div>
-
-<div class="form-group">
     <label for="target">{{ trans('menu::menu-items.form.target') }}</label>
     <select class="form-control" name="target" id="target">
         <option value="_self">{{ trans('menu::menu-items.form.same tab') }}</option>
