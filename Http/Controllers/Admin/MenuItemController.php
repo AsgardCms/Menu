@@ -18,19 +18,14 @@ class MenuItemController extends AdminBaseController
      */
     private $menuItem;
     /**
-     * @var Redirector
-     */
-    private $redirector;
-    /**
      * @var PageRepository
      */
     private $page;
 
-    public function __construct(MenuItemRepository $menuItem, Redirector $redirector, PageRepository $page)
+    public function __construct(MenuItemRepository $menuItem, PageRepository $page)
     {
         parent::__construct();
         $this->menuItem = $menuItem;
-        $this->redirector = $redirector;
         $this->page = $page;
     }
 
@@ -47,7 +42,7 @@ class MenuItemController extends AdminBaseController
 
         Flash::success(trans('menu::messages.menuitem created'));
 
-        return $this->redirector->route('admin.menu.menu.edit', [$menu->id]);
+        return redirect()->route('admin.menu.menu.edit', [$menu->id]);
     }
 
     public function edit(Menu $menu, Menuitem $menuItem)
@@ -63,7 +58,7 @@ class MenuItemController extends AdminBaseController
 
         Flash::success(trans('menu::messages.menuitem updated'));
 
-        return $this->redirector->route('admin.menu.menu.edit', [$menu->id]);
+        return redirect()->route('admin.menu.menu.edit', [$menu->id]);
     }
 
     public function destroy(Menu $menu, Menuitem $menuItem)
@@ -72,7 +67,7 @@ class MenuItemController extends AdminBaseController
 
         Flash::success(trans('menu::messages.menuitem deleted'));
 
-        return $this->redirector->route('admin.menu.menu.edit', [$menu->id]);
+        return redirect()->route('admin.menu.menu.edit', [$menu->id]);
     }
 
     /**
