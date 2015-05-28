@@ -1,7 +1,5 @@
 <?php namespace Modules\Menu\Http\Controllers\Admin;
 
-use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\View;
 use Laracasts\Flash\Flash;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Menu\Entities\Menu;
@@ -33,12 +31,10 @@ class MenuController extends AdminBaseController
     public function __construct(
         MenuRepository $menu,
         MenuItemRepository $menuItem,
-        Redirector $redirector,
         MenuRenderer $menuRenderer
     ) {
         parent::__construct();
         $this->menu = $menu;
-        $this->redirector = $redirector;
         $this->menuItem = $menuItem;
         $this->menuRenderer = $menuRenderer;
     }
@@ -47,12 +43,12 @@ class MenuController extends AdminBaseController
     {
         $menus = $this->menu->all();
 
-        return View::make('menu::admin.menus.index', compact('menus'));
+        return view('menu::admin.menus.index', compact('menus'));
     }
 
     public function create()
     {
-        return View::make('menu::admin.menus.create');
+        return view('menu::admin.menus.create');
     }
 
     public function store(CreateMenuRequest $request)
@@ -61,7 +57,7 @@ class MenuController extends AdminBaseController
 
         Flash::success(trans('menu::messages.menu created'));
 
-        return $this->redirector->route('admin.menu.menu.index');
+        return redirect()->route('admin.menu.menu.index');
     }
 
     public function edit(Menu $menu)
@@ -70,7 +66,7 @@ class MenuController extends AdminBaseController
 
         $menuStructure = $this->menuRenderer->renderForMenu($menu->id, $menuItems->nest());
 
-        return View::make('menu::admin.menus.edit', compact('menu', 'menuStructure'));
+        return view('menu::admin.menus.edit', compact('menu', 'menuStructure'));
     }
 
     public function update(Menu $menu, UpdateMenuRequest $request)
@@ -79,7 +75,7 @@ class MenuController extends AdminBaseController
 
         Flash::success(trans('menu::messages.menu updated'));
 
-        return $this->redirector->route('admin.menu.menu.index');
+        return redirect()->route('admin.menu.menu.index');
     }
 
     public function destroy(Menu $menu)
@@ -88,6 +84,6 @@ class MenuController extends AdminBaseController
 
         Flash::success(trans('menu::messages.menu deleted'));
 
-        return $this->redirector->route('admin.menu.menu.index');
+        return redirect()->route('admin.menu.menu.index');
     }
 }
