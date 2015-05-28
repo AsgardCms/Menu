@@ -1,7 +1,6 @@
 <?php namespace Modules\Menu\Http\Controllers\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Routing\Redirector;
 use Laracasts\Flash\Flash;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Menu\Entities\Menu;
