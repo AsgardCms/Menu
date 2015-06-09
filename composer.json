@@ -25,7 +25,7 @@
     "php": ">=5.4",
     "composer/installers": "~1.0",
     "pingpong/menus": "2.*@dev",
-    "typicms/nestablecollection": "~1.1.0",
+    "typicms/nestablecollection": "1.1.1",
     "asgardcms/core-module": "dev-develop",
     "dimsav/laravel-translatable": "~5.0"
   },
@@ -35,6 +35,12 @@
     "fzaninotto/faker": "1.4.0",
     "doctrine/dbal": "~2.5"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/nWidart/modules"
+    }
+  ],
   "autoload-dev": {
     "psr-4": {
       "Modules\\Menu\\": ".",
