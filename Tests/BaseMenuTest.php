@@ -1,17 +1,26 @@
 <?php namespace Modules\Menu\Tests;
 
 use Faker\Factory;
+use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider;
+use Modules\Core\Providers\CoreServiceProvider;
+use Modules\Menu\Providers\MenuServiceProvider;
+use Modules\Menu\Repositories\MenuItemRepository;
+use Modules\Menu\Repositories\MenuRepository;
 use Orchestra\Testbench\TestCase;
+use Pingpong\Modules\ModulesServiceProvider;
 
 abstract class BaseMenuTest extends TestCase
 {
     /**
-     * @var \Modules\Menu\Repositories\MenuRepository
+     * @var MenuRepository
      */
     protected $menu;
     /**
-     * @var \Modules\Menu\Repositories\MenuItemRepository
+     * @var MenuItemRepository
      */
     protected $menuItem;
 
@@ -24,25 +33,25 @@ abstract class BaseMenuTest extends TestCase
 
         $this->resetDatabase();
 
-        $this->menu = app('Modules\Menu\Repositories\MenuRepository');
-        $this->menuItem = app('Modules\Menu\Repositories\MenuItemRepository');
+        $this->menu = app(MenuRepository::class);
+        $this->menuItem = app(MenuItemRepository::class);
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            'Pingpong\Modules\ModulesServiceProvider',
-            'Modules\Core\Providers\CoreServiceProvider',
-            'Modules\Menu\Providers\MenuServiceProvider',
-            'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
+            ModulesServiceProvider::class,
+            CoreServiceProvider::class,
+            MenuServiceProvider::class,
+            LaravelLocalizationServiceProvider::class,
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'Eloquent' => 'Illuminate\Database\Eloquent\Model',
-            'LaravelLocalization' => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization',
+            'Eloquent' => Model::class,
+            'LaravelLocalization' => LaravelLocalization::class,
         ];
     }
 
@@ -62,7 +71,7 @@ abstract class BaseMenuTest extends TestCase
     {
         // Relative to the testbench app folder: vendors/orchestra/testbench/src/fixture
         $migrationsPath = 'Database/Migrations';
-        $artisan = $this->app->make('Illuminate\Contracts\Console\Kernel');
+        $artisan = $this->app->make(Kernel::class);
         // Makes sure the migrations table is created
         $artisan->call('migrate', [
             '--database' => 'sqlite',
