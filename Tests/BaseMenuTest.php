@@ -4,6 +4,7 @@ use Faker\Factory;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Maatwebsite\Sidebar\SidebarServiceProvider;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider;
 use Modules\Core\Providers\CoreServiceProvider;
@@ -44,6 +45,7 @@ abstract class BaseMenuTest extends TestCase
             CoreServiceProvider::class,
             MenuServiceProvider::class,
             LaravelLocalizationServiceProvider::class,
+            SidebarServiceProvider::class,
         ];
     }
 
