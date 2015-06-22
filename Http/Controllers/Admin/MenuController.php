@@ -16,10 +16,6 @@ class MenuController extends AdminBaseController
      */
     private $menu;
     /**
-     * @var Redirector
-     */
-    private $redirector;
-    /**
      * @var MenuItemRepository
      */
     private $menuItem;
