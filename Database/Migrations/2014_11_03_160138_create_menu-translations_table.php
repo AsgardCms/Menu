@@ -13,6 +13,7 @@ class CreateMenuTranslationsTable extends Migration
     public function up()
     {
         Schema::create('menu__menu_translations', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('menu_id')->unsigned();
             $table->string('locale')->index();

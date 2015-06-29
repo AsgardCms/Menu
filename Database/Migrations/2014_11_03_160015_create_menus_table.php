@@ -13,6 +13,7 @@ class CreateMenusTable extends Migration
     public function up()
     {
         Schema::create('menu__menus', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
             $table->tinyInteger('primary')->default(0);

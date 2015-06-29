@@ -13,6 +13,7 @@ class AddRootColumnToMenusTable extends Migration
     public function up()
     {
         Schema::table('menu__menuitems', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->boolean('is_root')->default(0);
         });
     }

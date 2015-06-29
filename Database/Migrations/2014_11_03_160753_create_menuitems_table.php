@@ -13,6 +13,7 @@ class CreateMenuitemsTable extends Migration
     public function up()
     {
         Schema::create('menu__menuitems', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('menu_id')->unsigned();
             $table->foreign('menu_id')->references('id')->on('menu__menus')->onDelete('cascade');
