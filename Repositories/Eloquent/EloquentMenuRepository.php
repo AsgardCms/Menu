@@ -31,6 +31,7 @@ class EloquentMenuRepository extends EloquentBaseRepository implements MenuRepos
     public function allOnline()
     {
         $locale = App::getLocale();
+
         return $this->model->whereHas('translations', function (Builder $q) use ($locale) {
             $q->where('locale', "$locale");
             $q->where('status', 1);
