@@ -16,8 +16,5 @@
   "aliases": {
     "Menu": "Pingpong\\Menus\\MenuFacade"
   },
-  "files": [
-    "start.php",
-    "listeners.php"
-  ]
+  "files": []
 }
