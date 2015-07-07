@@ -1,5 +1,9 @@
 url: https://github.com/AsgardCms/Menu
 versions:
+    "1.2.0":
+       changed:
+           - Use the flash helper function in controller
+           - Use manual route definition over the route resource shortcut
     "1.1.1":
        removed:
            - Removed unused loaded files
