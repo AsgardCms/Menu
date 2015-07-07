@@ -1,6 +1,5 @@
 <?php namespace Modules\Menu\Http\Controllers\Admin;
 
-use Laracasts\Flash\Flash;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Menu\Entities\Menu;
 use Modules\Menu\Http\Requests\CreateMenuRequest;
@@ -51,7 +50,7 @@ class MenuController extends AdminBaseController
     {
         $this->menu->create($request->all());
 
-        Flash::success(trans('menu::messages.menu created'));
+        flash(trans('menu::messages.menu created'));
 
         return redirect()->route('admin.menu.menu.index');
     }
@@ -69,7 +68,7 @@ class MenuController extends AdminBaseController
     {
         $this->menu->update($menu, $request->all());
 
-        Flash::success(trans('menu::messages.menu updated'));
+        flash(trans('menu::messages.menu updated'));
 
         return redirect()->route('admin.menu.menu.index');
     }
@@ -78,7 +77,7 @@ class MenuController extends AdminBaseController
     {
         $this->menu->destroy($menu);
 
-        Flash::success(trans('menu::messages.menu deleted'));
+        flash(trans('menu::messages.menu deleted'));
 
         return redirect()->route('admin.menu.menu.index');
     }
