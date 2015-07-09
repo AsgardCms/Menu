@@ -22,7 +22,7 @@
     "source": "https://github.com/AsgardCms/Menu"
   },
   "require": {
-    "php": ">=5.4",
+    "php": ">=5.5",
     "composer/installers": "~1.0",
     "pingpong/menus": "2.*@dev",
     "typicms/nestablecollection": "1.1.1",
