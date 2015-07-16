@@ -1,6 +1,6 @@
 <div class='form-group{{ $errors->has("{$lang}[title]") ? ' has-error' : '' }}'>
     {!! Form::label("{$lang}[title]", trans('menu::menu.form.title')) !!}
-    {!! Form::text("{$lang}[title]", Input::old("{$lang}[title]"), ['class' => 'form-control', 'placeholder' => trans('menu::menu.form.title')]) !!}
+    {!! Form::text("{$lang}[title]", Input::old("{$lang}[title]"), ['class' => 'form-control', 'placeholder' => trans('menu::menu.form.title'), 'autofocus']) !!}
     {!! $errors->first("{$lang}[title]", '<span class="help-block">:message</span>') !!}
 </div>
 <div class="form-group">
