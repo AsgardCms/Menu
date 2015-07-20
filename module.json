@@ -4,7 +4,7 @@
   "description": "Managing menus.",
   "keywords": [
   ],
-  "version": "1.4.0",
+  "version": "1.5.0",
   "active": 1,
   "order": 1,
   "providers": [

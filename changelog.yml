@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Menu
 versions:
+    "1.5.0":
+        changed:
+            - Added Brazilian Portuguese translations
     "1.4.0":
         changed:
             - Autofocus the <code>title</code> field
