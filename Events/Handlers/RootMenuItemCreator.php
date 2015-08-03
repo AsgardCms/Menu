@@ -1,5 +1,6 @@
 <?php namespace Modules\Menu\Events\Handlers;
 
+use Modules\Core\Contracts\Setting;
 use Modules\Menu\Events\MenuWasCreated;
 use Modules\Menu\Repositories\MenuItemRepository;
 
@@ -9,10 +10,15 @@ class RootMenuItemCreator
      * @var MenuItemRepository
      */
     private $menuItem;
+    /**
+     * @var Setting
+     */
+    private $setting;
 
-    public function __construct(MenuItemRepository $menuItem)
+    public function __construct(MenuItemRepository $menuItem, Setting $setting)
     {
         $this->menuItem = $menuItem;
+        $this->setting = $setting;
     }
 
     public function handle(MenuWasCreated $event)
@@ -21,14 +27,21 @@ class RootMenuItemCreator
             'menu_id' => $event->menu->id,
             'position' => 0,
             'is_root' => true,
-            'en' => [
-                'title' => 'root',
-            ],
-            'fr' => [
-                'title' => 'root',
-            ],
         ];
 
+        foreach ($this->getEnabledLocales() as $locale) {
+            $data[$locale]['title'] = 'root';
+        }
+
         $this->menuItem->create($data);
+    }
+
+    /**
+     * Return an array of enabled locales
+     * @return array
+     */
+    private function getEnabledLocales()
+    {
+        return json_decode($this->setting->get('core::locales', '{"en"}'));
     }
 }
