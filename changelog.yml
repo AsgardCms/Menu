@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Menu
 versions:
+    "1.7.0":
+        changes:
+            - Root menu item now is set in all available languages instead of hardcoded
     "1.6.0":
         added:
             - Spanish translations
