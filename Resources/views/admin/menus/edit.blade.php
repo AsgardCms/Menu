@@ -125,7 +125,7 @@ $( document ).ready(function() {
         var data = $('.dd').nestable('serialize');
         $.ajax({
             type: 'POST',
-            url: '/api/menuitem/update',
+            url: '{{ route('api.menuitem.update') }}',
             data: {'menu': JSON.stringify(data), '_token': '<?php echo csrf_token(); ?>'},
             dataType: 'json',
             success: function(data) {
