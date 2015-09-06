@@ -21,6 +21,7 @@ class Menuitem extends Model
         'url',
         'status',
         'is_root',
+        'icon'
     ];
     protected $table = 'menu__menuitems';
 

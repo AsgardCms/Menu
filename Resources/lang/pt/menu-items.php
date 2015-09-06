@@ -7,5 +7,6 @@ return [
         'target' => 'Objeto',
         'same tab' => 'Mesma aba',
         'new tab' => 'Nova aba',
+        'icon' => 'Icon',
     ],
 ];

@@ -7,5 +7,6 @@ return [
         'target' => 'Target',
         'same tab' => 'Same tab',
         'new tab' => 'New tab',
+        'icon' => 'Icon',
     ],
 ];

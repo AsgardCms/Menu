@@ -59,7 +59,11 @@ class MenuRenderer
 </div>
 HTML;
             $handleClass = $item->isRoot() ? 'dd-handle-root' : 'dd-handle';
-            $this->menu .= "<div class=\"{$handleClass}\">{$item->title}</div>";
+            if (isset($item->icon) && $item->icon != '') {
+                $this->menu .= "<div class=\"{$handleClass}\"><i class=\"{$item->icon}\" ></i> {$item->title}</div>";
+            } else {
+                $this->menu .= "<div class=\"{$handleClass}\">{$item->title}</div>";
+            }
 
             if ($this->hasChildren($item)) {
                 $this->generateHtmlFor($item->items);
