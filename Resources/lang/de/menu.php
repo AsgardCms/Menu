@@ -21,18 +21,18 @@ return [
         'create menu' => 'Menü erstellen',
     ],
     'table' => [
-        'name' => 'Namen',
+        'name' => 'Name',
         'title' => 'Titel',
     ],
     'form' => [
         'title' => 'Titel',
-        'name' => 'Namen',
+        'name' => 'Name',
         'status' => 'Online',
         'uri' => 'URI',
         'url' => 'URL',
-        'primary' => 'Primäre-Menü (für die Front-End-Routing)',
+        'primary' => 'Primäres-Menü (für das Frontend-Routing)',
     ],
     'navigation' => [
-        'back to index' => 'Zurück zum Menü Index'
+        'back to index' => 'Zurück zur Übersicht'
     ]
 ];
