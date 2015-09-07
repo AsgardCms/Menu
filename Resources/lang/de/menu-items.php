@@ -7,5 +7,6 @@ return [
         'target' => 'Target',
         'same tab' => 'Gleichen Registerkarte',
         'new tab' => 'Neue Registerkarte',
+        'icon' => 'Icon',
     ],
 ];

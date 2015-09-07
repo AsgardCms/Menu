@@ -89,13 +89,14 @@ class MenuServiceProvider extends ServiceProvider
     public function addItemToMenu(Menuitem $item, Builder $menu)
     {
         if ($this->hasChildren($item)) {
-            $this->addChildrenToMenu($item->title, $item->items, $menu);
+            $this->addChildrenToMenu($item->title, $item->items, $menu, ['icon' => $item->icon]);
         } else {
             $target = $item->uri ?: $item->url;
             $menu->url(
                 $target,
                 $item->title,
-                ['target' => $item->target]
+                ['target' => $item->target,
+                    'icon' => $item->icon]
             );
         }
     }
@@ -107,13 +108,13 @@ class MenuServiceProvider extends ServiceProvider
      * @param object $children
      * @param Builder|MenuItem $menu
      */
-    private function addChildrenToMenu($name, $children, $menu)
+    private function addChildrenToMenu($name, $children, $menu, $attribs = [])
     {
         $menu->dropdown($name, function (PingpongMenuItem $subMenu) use ($children) {
             foreach ($children as $child) {
                 $this->addSubItemToMenu($child, $subMenu);
             }
-        });
+        }, 0, $attribs);
     }
 
     /**
@@ -127,6 +128,8 @@ class MenuServiceProvider extends ServiceProvider
 
         if ($this->hasChildren($child)) {
             $this->addChildrenToMenu($child->title, $child->items, $sub);
+        } else {
+            $sub->url($child->url_target, $child->title, 0, ['icon' => $child->icon]);
         }
     }
 
