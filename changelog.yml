@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Menu
 versions:
+    "1.9.0":
+        added:
+            - Icon on menu
     "1.8.0":
         added:
             - Dutch and Portuguese language
