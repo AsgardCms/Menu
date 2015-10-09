@@ -2,7 +2,7 @@
 
 return [
     /* Menu management */
-    'menu created' => 'Menu erfolgreich erstellt.',
+    'menu created' => 'Menü erfolgreich erstellt.',
     'menu not found' => 'Menü nicht gefunden.',
     'menu updated' => 'Menu erfolgreich aktualisiert.',
     'menu deleted' => 'Menu erfolgreich gelöscht.',
