@@ -2,10 +2,10 @@
 
 return [
     'form' => [
-        'page' => 'Page',
+        'page' => 'Seite',
         'module' => 'Modul',
-        'target' => 'Target',
-        'same tab' => 'Gleichen Registerkarte',
+        'target' => 'Ziel',
+        'same tab' => 'Gleiche Registerkarte',
         'new tab' => 'Neue Registerkarte',
         'icon' => 'Icon',
     ],
