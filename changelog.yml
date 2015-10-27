@@ -1,5 +1,10 @@
 url: https://github.com/AsgardCms/Menu
 versions:
+    "1.10.0":
+        added:
+            - Added Russian translations
+        changed:
+            - Improving german translations
     "1.9.0":
         added:
             - Icon on menu
