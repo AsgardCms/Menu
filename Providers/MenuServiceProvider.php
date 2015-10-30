@@ -124,12 +124,16 @@ class MenuServiceProvider extends ServiceProvider
      */
     private function addSubItemToMenu(Menuitem $child, PingpongMenuItem $sub)
     {
-        $sub->url($child->uri, $child->title);
-
         if ($this->hasChildren($child)) {
             $this->addChildrenToMenu($child->title, $child->items, $sub);
         } else {
-            $sub->url($child->url_target, $child->title, 0, ['icon' => $child->icon]);
+            $target = $child->uri ?: $child->url;
+            $sub->url(
+                $target,
+                $child->title,
+                ['target' => $child->target,
+                    'icon' => $child->icon]
+            );
         }
     }
 
