@@ -30,7 +30,7 @@ return [
         'status' => 'Online',
         'uri' => 'URI',
         'url' => 'URL',
-        'primary' => 'Hauptmenü (für das Front-End-Routing)',
+        'primary' => 'Primäres-Menü (für das Frontend-Routing)',
     ],
     'navigation' => [
         'back to index' => 'Zurück zur Übersicht'
