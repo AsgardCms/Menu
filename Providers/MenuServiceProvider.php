@@ -127,7 +127,8 @@ class MenuServiceProvider extends ServiceProvider
         if ($this->hasChildren($child)) {
             $this->addChildrenToMenu($child->title, $child->items, $sub);
         } else {
-            $sub->url($child->url_target, $child->title, 0, ['icon' => $child->icon]);
+            $target = $child->uri ?: $child->url;
+            $sub->url($target, $child->title, 0, ['icon' => $child->icon]);
         }
     }
 
