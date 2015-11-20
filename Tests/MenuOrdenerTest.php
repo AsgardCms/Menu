@@ -19,10 +19,10 @@ class MenuOrdenerTest extends BaseMenuTest
     {
         // Prepare
         $menu = $this->createMenu('main', 'Main Menu');
-        $menuItem1 = $this->createMenuItemForMenu($menu->id, 0);
-        $menuItem2 = $this->createMenuItemForMenu($menu->id, 1);
+        $menuItem1 = $this->createMenuItemForMenu($menu->id, 1);
+        $menuItem2 = $this->createMenuItemForMenu($menu->id, 2);
         $request = [
-            0 => [
+            1 => [
                 'id' => $menuItem1->id,
                 'children' => [
                     0 => [
@@ -50,7 +50,7 @@ class MenuOrdenerTest extends BaseMenuTest
         $menuItem2 = $this->createMenuItemForMenu($menu->id, 0, $menuItem1->id);
         $menuItem3 = $this->createMenuItemForMenu($menu->id, 1, $menuItem1->id);
         $request = [
-            0 => [
+            1 => [
                 'id' => $menuItem1->id,
                 'children' => [
                     0 => [
@@ -81,14 +81,14 @@ class MenuOrdenerTest extends BaseMenuTest
     {
         // Prepare
         $menu = $this->createMenu('main', 'Main Menu');
-        $menuItem1 = $this->createMenuItemForMenu($menu->id, 0);
-        $menuItem2 = $this->createMenuItemForMenu($menu->id, 1);
+        $menuItem1 = $this->createMenuItemForMenu($menu->id, 1);
+        $menuItem2 = $this->createMenuItemForMenu($menu->id, 2);
 
         $request = [
-            0 => [
+            1 => [
                 'id' => $menuItem2->id,
             ],
-            1 => [
+            2 => [
                 'id' => $menuItem1->id,
             ],
         ];
@@ -99,9 +99,9 @@ class MenuOrdenerTest extends BaseMenuTest
 
         // Assert
         $item1 = $this->menuItem->find($menuItem1->id);
-        $this->assertEquals(1, $item1->position);
+        $this->assertEquals(2, $item1->position);
         $item2 = $this->menuItem->find($menuItem2->id);
-        $this->assertEquals(0, $item2->position);
+        $this->assertEquals(1, $item2->position);
     }
 
     /** @test */
