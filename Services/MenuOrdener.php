@@ -38,6 +38,9 @@ class MenuOrdener
     private function order($position, $item)
     {
         $menuItem = $this->menuItemRepository->find($item['id']);
+        if (0 === $position && false === $menuItem->isRoot()) {
+            return;
+        }
         $this->savePosition($menuItem, $position);
         $this->makeItemChildOf($menuItem, null);
 
