@@ -80,6 +80,6 @@ HTML;
      */
     private function hasChildren($item)
     {
-        return !is_array($item->items);
+        return count($item->items);
     }
 }
