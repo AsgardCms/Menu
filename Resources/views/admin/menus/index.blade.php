@@ -30,7 +30,7 @@
                         <tr>
                             <th>{{ trans('menu::menu.table.name') }}</th>
                             <th>{{ trans('menu::menu.table.title') }}</th>
-                            <th>{{ trans('core::core.table.actions') }}</th>
+                            <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,12 +128,7 @@
             "order": [[ 0, "asc" ]],
             "language": {
                 "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
-            },
-            "columns": [
-                null,
-                null,
-                { "sortable": false }
-            ]
+            }
         });
     });
 </script>
