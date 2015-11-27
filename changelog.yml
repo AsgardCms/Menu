@@ -1,5 +1,9 @@
 url: https://github.com/AsgardCms/Menu
 versions:
+    "1.13.0":
+        changed:
+            - Manual inclusing of iCheck css file has been removed
+            - Use the new datatables way of marking column not sortable
     "1.12.0":
         changed:
             - Fix submenu items not being linked
