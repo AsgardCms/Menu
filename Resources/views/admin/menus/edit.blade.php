@@ -12,7 +12,6 @@
 @stop
 
 @section('styles')
-    {!! Theme::style('css/vendor/iCheck/flat/blue.css') !!}
     <link href="{!! Module::asset('menu:css/nestable.css') !!}" rel="stylesheet" type="text/css" />
 @stop
 
