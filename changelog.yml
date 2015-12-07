@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Menu
 versions:
+    "1.14.0":
+        changed:
+            - Removed language files, they are now in the translation module
     "1.13.0":
         changed:
             - Manual inclusing of iCheck css file has been removed
