@@ -55,4 +55,13 @@ class Menuitem extends Model
     {
         return (bool) $this->is_root;
     }
+
+    /**
+     * Check if page_id is empty and returning null instead empty string
+     * @return number
+     */
+    public function setPageIdAttribute($value)
+    {
+        $this->page_id = ! empty($value) ? $value : null;
+    }
 }
