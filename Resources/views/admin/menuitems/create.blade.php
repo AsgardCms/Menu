@@ -20,6 +20,22 @@
     <div class="col-md-12">
         <div class="box box-primary">
             <div class="box-header">
+                <h3 class="box-title">{{ trans('menu::menu-items.link-type.link type') }}</h3>
+            </div>
+            <div class="box-body">
+                <div class="radio">
+                    <input type="radio" id="link-page" name="link-type" value="page" checked><label for="link-page">{{ trans('menu::menu-items.link-type.page') }}</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" id="link-internal" name="link-type" value="internal"><label for="link-internal">{{ trans('menu::menu-items.link-type.internal') }}</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" id="link-external" name="link-type" value="external"><label for="link-external">{{ trans('menu::menu-items.link-type.external') }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="box box-primary">
+            <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
             </div>
             <div class="box-body">
@@ -76,6 +92,16 @@
 @section('scripts')
 <script>
 $( document ).ready(function() {
+    $('.link-type-depended').hide();
+    $('.link-page').fadeIn();
+    $('[name="link-type"]').iCheck({
+        checkboxClass: 'icheckbox_minimal',
+        radioClass: 'iradio_flat-blue'
+    }).on('ifChecked',function(){
+        $('.link-type-depended').hide();
+        $('.link-'+$(this).val()).fadeIn();
+    });
+
     $(document).keypressAction({
         actions: [
             { key: 'b', route: "<?= route('admin.menu.menu.edit', [$menu->id]) ?>" }

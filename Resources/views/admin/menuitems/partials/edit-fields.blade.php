@@ -4,7 +4,7 @@
     {!! $errors->first("icon", '<span class="help-block">:message</span>') !!}
 </div>
 
-<div class="form-group">
+<div class="form-group link-type-depended link-page">
     <label for="page">{{ trans('menu::menu-items.form.page') }}</label>
     <select class="form-control" name="page_id" id="page">
         <option value=""></option>
