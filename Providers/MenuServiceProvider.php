@@ -8,7 +8,6 @@ use Modules\Menu\Repositories\Cache\CacheMenuDecorator;
 use Modules\Menu\Repositories\Cache\CacheMenuItemDecorator;
 use Modules\Menu\Repositories\Eloquent\EloquentMenuItemRepository;
 use Modules\Menu\Repositories\Eloquent\EloquentMenuRepository;
-use Modules\Page\Entities\Page;
 use Pingpong\Menus\MenuBuilder as Builder;
 use Pingpong\Menus\MenuFacade;
 use Pingpong\Menus\MenuItem as PingpongMenuItem;
@@ -92,7 +91,7 @@ class MenuServiceProvider extends ServiceProvider
         if ($this->hasChildren($item)) {
             $this->addChildrenToMenu($item->title, $item->items, $menu, ['icon' => $item->icon, 'target' => $item->target]);
         } else {
-            $target = $this->getTarget($item);
+            $target = $item->uri ?: $item->url;
             $menu->url(
                 $target,
                 $item->title,
@@ -128,8 +127,8 @@ class MenuServiceProvider extends ServiceProvider
         if ($this->hasChildren($child)) {
             $this->addChildrenToMenu($child->title, $child->items, $sub);
         } else {
-            $target = $this->getTarget($child);
-            $sub->url($target, $child->title, 0, ['icon' => $child->icon, 'target' => $target]);
+            $target = $child->uri ?: $child->url;
+            $sub->url($target, $child->title, 0, ['icon' => $child->icon, 'target' => $child->target]);
         }
     }
 
@@ -163,62 +162,4 @@ class MenuServiceProvider extends ServiceProvider
             });
         }
     }
-
-    /**
-     * Get link target
-     *
-     * @param $item
-     * @return mixed
-     */
-    private function getTarget($item)
-    {
-        if (empty($item->url)) {
-            $linkPathArray = array();
-            $parentItem = $item;
-
-            $hasParentItem = !is_null($item->parent_id) ? true : false;
-
-            while ($hasParentItem) {
-                $parentItem = Menuitem::where('id', '=', $parentItem->parent_id)->first();
-
-                if ($parentItem->is_root != true) {
-                    if (!empty($parentItem->page_id)) {
-                        $page = Page::where('id', '=', $parentItem->page_id)->first()->translate($this->app->getLocale());
-                        array_push($linkPathArray, $page->slug);
-                    } else {
-                        $parentUri = !is_null($parentItem->uri) ? $parentItem->uri . '/' . $linkPathArray : $linkPathArray;
-                        array_push($linkPathArray, $parentUri);
-                    }
-                }
-                $hasParentItem = !is_null($parentItem->parent_id) ? true : false;
-            }
-
-            $linkPathArray = array_reverse($linkPathArray);
-            if (!empty($item->page_id)) {
-                $page = Page::where('id', '=', $item->page_id)->first()->translate($this->app->getLocale());
-
-                array_push($linkPathArray, $page->slug);
-            } else {
-                array_push($linkPathArray, $item->uri);
-            }
-            $parentLinkPath = implode('/', $linkPathArray);
-        } else {
-            $parentLinkPath = $item->url;
-        }
-
-        return $parentLinkPath;
-    }
-
-    /**
-     * Get parent item
-     *
-     * @param $item
-     * @return mixed
-     */
-    /*private function getParentItem($item){
-       // \Debugbar::info($item->parent_id);
-        //Menuitem::where('id','=',$item->parent_id);
-
-        return $target;
-    }*/
 }
