@@ -4,7 +4,7 @@
     {!! $errors->first("icon", '<span class="help-block">:message</span>') !!}
 </div>
 
-<div class="form-group">
+<div class="form-group link-type-depended link-page">
     <label for="page">{{ trans('menu::menu-items.form.page') }}</label>
     <select class="form-control" name="page_id" id="page">
         <option value=""></option>
@@ -12,6 +12,19 @@
             <option value="{{ $page->id }}" {{ $menuItem->page_id == $page->id ? 'selected' : '' }}>
                 {{ $page->title }}
             </option>
+        <?php endforeach; ?>
+    </select>
+</div>
+<div class="form-group">
+    <label for="page">{{ trans('menu::menu-items.form.parent menu item') }}</label>
+    <select class="form-control" name="parent_id" id="page">
+        <option value=""></option>
+        <?php foreach ($menuSelect as $menuName => $menuEntity): ?>
+        <optgroup label="{{ $menuName }}">
+            <?php foreach ($menuEntity as $menuItemEntity): ?>
+            <option value="{{ $menuItemEntity->id }}">{{ $menuItemEntity->title }}</option>
+            <?php endforeach; ?>
+        </optgroup>
         <?php endforeach; ?>
     </select>
 </div>

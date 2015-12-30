@@ -15,6 +15,7 @@ class Menuitem extends Model
         'parent_id',
         'position',
         'target',
+        'link_type',
         'module_name',
         'title',
         'uri',
