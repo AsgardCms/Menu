@@ -24,13 +24,13 @@
             </div>
             <div class="box-body">
                 <div class="radio">
-                    <input type="radio" id="link-page" name="link-type" value="page" checked><label for="link-page">{{ trans('menu::menu-items.link-type.page') }}</label>
+                    <input type="radio" id="link-page" name="link_type" value="page" checked><label for="link-page">{{ trans('menu::menu-items.link-type.page') }}</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" id="link-internal" name="link-type" value="internal"><label for="link-internal">{{ trans('menu::menu-items.link-type.internal') }}</label>
+                    <input type="radio" id="link-internal" name="link_type" value="internal"><label for="link-internal">{{ trans('menu::menu-items.link-type.internal') }}</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" id="link-external" name="link-type" value="external"><label for="link-external">{{ trans('menu::menu-items.link-type.external') }}</label>
+                    <input type="radio" id="link-external" name="link_type" value="external"><label for="link-external">{{ trans('menu::menu-items.link-type.external') }}</label>
                 </div>
             </div>
         </div>
@@ -92,9 +92,15 @@
 @section('scripts')
 <script>
 $( document ).ready(function() {
+    $(document).keypressAction({
+        actions: [
+            { key: 'b', route: "<?= route('admin.menu.menu.edit', [$menu->id]) ?>" }
+        ]
+    });
+
     $('.link-type-depended').hide();
     $('.link-page').fadeIn();
-    $('[name="link-type"]').iCheck({
+    $('[name="link_type"]').iCheck({
         checkboxClass: 'icheckbox_minimal',
         radioClass: 'iradio_flat-blue'
     }).on('ifChecked',function(){
@@ -102,11 +108,6 @@ $( document ).ready(function() {
         $('.link-'+$(this).val()).fadeIn();
     });
 
-    $(document).keypressAction({
-        actions: [
-            { key: 'b', route: "<?= route('admin.menu.menu.edit', [$menu->id]) ?>" }
-        ]
-    });
     $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
         checkboxClass: 'icheckbox_flat-blue',
         radioClass: 'iradio_flat-blue'

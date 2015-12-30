@@ -15,6 +15,7 @@ class Menuitem extends Model
         'parent_id',
         'position',
         'target',
+        'link_type',
         'module_name',
         'title',
         'uri',
@@ -54,5 +55,14 @@ class Menuitem extends Model
     public function isRoot()
     {
         return (bool) $this->is_root;
+    }
+
+    /**
+     * Check if page_id is empty and returning null instead empty string
+     * @return number
+     */
+    public function setPageIdAttribute($value)
+    {
+        $this->attributes['page_id'] = ! empty($value) ? $value : null;
     }
 }

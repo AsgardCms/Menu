@@ -33,7 +33,9 @@ class MenuItemController extends AdminBaseController
     {
         $pages = $this->page->all();
 
-        return view('menu::admin.menuitems.create', compact('menu', 'pages'));
+        $menuSelect = $this->getMenuSelect($menu->all());
+
+        return view('menu::admin.menuitems.create', compact('menu', 'pages', 'menuSelect'));
     }
 
     public function store(Menu $menu, CreateMenuItemRequest $request)
@@ -49,7 +51,9 @@ class MenuItemController extends AdminBaseController
     {
         $pages = $this->page->all();
 
-        return view('menu::admin.menuitems.edit', compact('menu', 'menuItem', 'pages'));
+        $menuSelect = $this->getMenuSelect($menu, $menuItem->id);
+
+        return view('menu::admin.menuitems.edit', compact('menu', 'menuItem', 'pages', 'menuSelect'));
     }
 
     public function update(Menu $menu, Menuitem $menuItem, UpdateMenuItemRequest $request)
@@ -69,6 +73,25 @@ class MenuItemController extends AdminBaseController
 
         return redirect()->route('admin.menu.menu.edit', [$menu->id]);
     }
+
+    /**
+     * @param Menu, $menuItemId
+     * @return array
+     */
+    private function getMenuSelect($menu, $menuItemId = null)
+    {
+        $menus = $menu->all();
+
+        $menuSelect = array();
+
+        foreach($menus as $menuEntity){
+            $menuSelect[$menuEntity['name']] = $menuEntity->menuitems()->get();
+        }
+
+        return $menuSelect;
+    }
+
+
 
     /**
      * @param  Menu                                    $menu
@@ -91,7 +114,7 @@ class MenuItemController extends AdminBaseController
      * Get uri
      *
      * @param $item
-     * @return mixed
+     * @return string
      */
     private function getUri($pageId, $lang)
     {
