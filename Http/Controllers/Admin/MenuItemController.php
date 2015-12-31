@@ -124,23 +124,18 @@ class MenuItemController extends AdminBaseController
 
         $currentItem = $this->menuItem->getByAttributes(['page_id' => $pageId])->first();
 
-        if(! is_null($currentItem))
-        {
+        if (! is_null($currentItem)) {
             $hasParentItem = !(is_null($currentItem->parent_id)) ? true : false;
 
-            while ($hasParentItem)
-            {
+            while ($hasParentItem) {
                 $parentItemId = isset($parentItem) ? $parentItem->parent_id : $currentItem->parent_id;
 
                 $parentItem = $this->menuItem->find($parentItemId);
 
-                if ($parentItem->is_root != true)
-                {
-                    if (!empty($parentItem->page_id))
-                    {
+                if ($parentItem->is_root != true) {
+                    if (!empty($parentItem->page_id)) {
                         array_push($linkPathArray, $this->getPageSlug($parentItem->page_id, $lang));
-                    } else
-                    {
+                    } else {
                         array_push($linkPathArray, $this->getParentUri($parentItem, $linkPathArray));
                     }
                 }
@@ -165,7 +160,6 @@ class MenuItemController extends AdminBaseController
         return $this->page->find($id)->translate($lang)->slug;
     }
 
-
     /**
      * Get parent uri
      *
@@ -176,5 +170,4 @@ class MenuItemController extends AdminBaseController
     {
         return ! is_null($item->uri) ? $item->uri . '/' . $linkPathArray : $linkPathArray;
     }
-
 }
