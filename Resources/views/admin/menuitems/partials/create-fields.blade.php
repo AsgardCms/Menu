@@ -12,6 +12,7 @@
         <?php endforeach; ?>
     </select>
 </div>
+<!--
 <div class="form-group">
     <label for="page">{{ trans('menu::menu-items.form.parent menu item') }}</label>
     <select class="form-control" name="parent_id" id="page">
@@ -25,7 +26,7 @@
         <?php endforeach; ?>
     </select>
 </div>
-
+!-->
 <div class="form-group">
     <label for="target">{{ trans('menu::menu-items.form.target') }}</label>
     <select class="form-control" name="target" id="target">

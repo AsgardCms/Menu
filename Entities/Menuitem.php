@@ -65,4 +65,13 @@ class Menuitem extends Model
     {
         $this->attributes['page_id'] = ! empty($value) ? $value : null;
     }
+
+    /**
+     * Check if parent_id is empty and returning null instead empty string
+     * @return number
+     */
+    public function setParentIdAttribute($value)
+    {
+        $this->attributes['parent_id'] = ! empty($value) ? $value : null;
+    }
 }

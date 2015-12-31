@@ -84,12 +84,14 @@ class MenuItemController extends AdminBaseController
 
         $menuSelect = array();
 
-        foreach ($menus as $menuEntity) {
+        foreach($menus as $menuEntity){
             $menuSelect[$menuEntity['name']] = $menuEntity->menuitems()->get();
         }
 
         return $menuSelect;
     }
+
+
 
     /**
      * @param  Menu                                    $menu
@@ -99,11 +101,11 @@ class MenuItemController extends AdminBaseController
     private function addMenuId(Menu $menu, FormRequest $request)
     {
         $data = $request->all();
-
         foreach (\LaravelLocalization::getSupportedLanguagesKeys() as $lang) {
             $uri = $data[$lang]['uri'];
-            $data[$lang]['uri'] = ! empty($uri) ? $uri : $this->getUri($data['page_id'], $lang);
+            $data[$lang]['uri'] = ! empty($data['link_type'] == 'internal') ? $uri : $this->getUri($data['page_id'], $lang);
         }
+        unset($data['parent_id']); // Just for the moment until Selectbox is ready
 
         return array_merge($data, ['menu_id' => $menu->id]);
     }
@@ -120,12 +122,14 @@ class MenuItemController extends AdminBaseController
 
         array_push($linkPathArray, $this->getPageSlug($pageId, $lang));
 
-        $hasParentItem = true;
+        $currentItem = Menuitem::where('page_id', '=', $pageId)->first();
+
+        $hasParentItem = false;
 
         while ($hasParentItem) {
-            $pageId = isset($parentItem) ? $parentItem->parent_id : $pageId;
+            $parentItemId = isset($parentItem) ? $parentItem->parent_id : $currentItem->parent_id;
 
-            $parentItem = Menuitem::where('id', '=', $pageId)->first();
+            $parentItem = Menuitem::where('id', '=', $parentItemId)->first();
 
             if ($parentItem->is_root != true) {
                 if (!empty($parentItem->page_id)) {
