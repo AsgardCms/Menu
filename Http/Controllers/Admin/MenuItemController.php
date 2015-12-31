@@ -99,10 +99,12 @@ class MenuItemController extends AdminBaseController
     private function addMenuId(Menu $menu, FormRequest $request)
     {
         $data = $request->all();
+
         foreach (\LaravelLocalization::getSupportedLanguagesKeys() as $lang) {
             $uri = $data[$lang]['uri'];
             $data[$lang]['uri'] = ! empty($data['link_type'] == 'internal') ? $uri : $this->getUri($data['page_id'], $lang);
         }
+
         unset($data['parent_id']); // Just for the moment until Selectbox is ready
 
         return array_merge($data, ['menu_id' => $menu->id]);
@@ -120,25 +122,31 @@ class MenuItemController extends AdminBaseController
 
         array_push($linkPathArray, $this->getPageSlug($pageId, $lang));
 
-        $currentItem = Menuitem::where('page_id', '=', $pageId)->first();
+        $currentItem = $this->menuItem->getByAttributes(['page_id' => $pageId])->first();
 
-        $hasParentItem = false;
+        if(! is_null($currentItem))
+        {
+            $hasParentItem = !(is_null($currentItem->parent_id)) ? true : false;
 
-        while ($hasParentItem) {
-            $parentItemId = isset($parentItem) ? $parentItem->parent_id : $currentItem->parent_id;
+            while ($hasParentItem)
+            {
+                $parentItemId = isset($parentItem) ? $parentItem->parent_id : $currentItem->parent_id;
 
-            $parentItem = Menuitem::where('id', '=', $parentItemId)->first();
+                $parentItem = $this->menuItem->find($parentItemId);
 
-            if ($parentItem->is_root != true) {
-                if (!empty($parentItem->page_id)) {
-                    array_push($linkPathArray, $this->getPageSlug($parentItem->page_id, $lang));
-                } else {
-                    $parentUri = ! is_null($parentItem->uri) ? $parentItem->uri . '/' . $linkPathArray : $linkPathArray;
-                    array_push($linkPathArray, $parentUri);
+                if ($parentItem->is_root != true)
+                {
+                    if (!empty($parentItem->page_id))
+                    {
+                        array_push($linkPathArray, $this->getPageSlug($parentItem->page_id, $lang));
+                    } else
+                    {
+                        array_push($linkPathArray, $this->getParentUri($parentItem, $linkPathArray));
+                    }
                 }
-            }
 
-            $hasParentItem = ! is_null($parentItem->parent_id) ? true : false;
+                $hasParentItem = !is_null($parentItem->parent_id) ? true : false;
+            }
         }
 
         $parentLinkPath = implode('/', array_reverse($linkPathArray));
@@ -152,8 +160,21 @@ class MenuItemController extends AdminBaseController
      * @params $pageId, $lang
      * @return string
      */
-    private function getPageSlug($pageId, $lang)
+    private function getPageSlug($id, $lang)
     {
-        return Page::where('id', '=', $pageId)->first()->translate($lang)->slug;
+        return $this->page->find($id)->translate($lang)->slug;
     }
+
+
+    /**
+     * Get parent uri
+     *
+     * @params $pageId, $lang
+     * @return string
+     */
+    private function getParentUri($item, $linkPathArray)
+    {
+        return ! is_null($item->uri) ? $item->uri . '/' . $linkPathArray : $linkPathArray;
+    }
+
 }

@@ -99,7 +99,7 @@ $( document ).ready(function() {
     });
 
     $('.link-type-depended').hide();
-    $('.link-page').fadeIn();
+    $('.link-{{ $menuItem->link_type }}').fadeIn();
     $('[name="link_type"]').iCheck({
         checkboxClass: 'icheckbox_minimal',
         radioClass: 'iradio_flat-blue'
