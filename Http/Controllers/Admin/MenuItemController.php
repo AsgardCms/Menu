@@ -84,14 +84,12 @@ class MenuItemController extends AdminBaseController
 
         $menuSelect = array();
 
-        foreach($menus as $menuEntity){
+        foreach ($menus as $menuEntity) {
             $menuSelect[$menuEntity['name']] = $menuEntity->menuitems()->get();
         }
 
         return $menuSelect;
     }
-
-
 
     /**
      * @param  Menu                                    $menu
