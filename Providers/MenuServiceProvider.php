@@ -128,7 +128,6 @@ class MenuServiceProvider extends ServiceProvider
             $this->addChildrenToMenu($child->title, $child->items, $sub);
         } else {
             $target = $child->link_type != 'external' ? $child->locale . '/' . $child->uri : $child->url;
-            $target = $this->app->getLocale().'/'.$target;
             $sub->url($target, $child->title, 0, ['icon' => $child->icon, 'target' => $child->target]);
         }
     }
