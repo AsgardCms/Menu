@@ -91,8 +91,7 @@ class MenuServiceProvider extends ServiceProvider
         if ($this->hasChildren($item)) {
             $this->addChildrenToMenu($item->title, $item->items, $menu, ['icon' => $item->icon, 'target' => $item->target]);
         } else {
-            $target = $item->link_type != 'external' ? $item->uri : $item->url;
-            $target = $this->app->getLocale().'/'.$target;
+            $target = $item->link_type != 'external' ? $item->locale . '/' . $item->uri : $item->url;
             $menu->url(
                 $target,
                 $item->title,
@@ -128,7 +127,7 @@ class MenuServiceProvider extends ServiceProvider
         if ($this->hasChildren($child)) {
             $this->addChildrenToMenu($child->title, $child->items, $sub);
         } else {
-            $target = $child->link_type != 'external' ? $child->uri : $child->url;
+            $target = $child->link_type != 'external' ? $child->locale . '/' . $child->uri : $child->url;
             $target = $this->app->getLocale().'/'.$target;
             $sub->url($target, $child->title, 0, ['icon' => $child->icon, 'target' => $child->target]);
         }

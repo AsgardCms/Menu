@@ -8,7 +8,7 @@ class Menuitem extends Model
 {
     use Translatable, NestableTrait;
 
-    public $translatedAttributes = ['title', 'uri', 'url', 'status'];
+    public $translatedAttributes = ['locale', 'title', 'uri', 'url', 'status'];
     protected $fillable = [
         'menu_id',
         'page_id',
@@ -17,6 +17,7 @@ class Menuitem extends Model
         'target',
         'link_type',
         'module_name',
+        'locale',
         'title',
         'uri',
         'url',
