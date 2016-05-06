@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Menu
 versions:
+    "1.16.0":
+        changed:
+            - Using new authorise middleware for more flexibility
     "1.15.0":
         changed:
             - Submenu items now have their target attribute set
