@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class UpdateIconColumnOnMenuitemsTable extends Migration {
+class UpdateIconColumnOnMenuitemsTable extends Migration
+{
 
     /**
      * Run the migrations.
@@ -12,8 +13,7 @@ class UpdateIconColumnOnMenuitemsTable extends Migration {
      */
     public function up()
     {
-        Schema::table('menu__menuitems', function(Blueprint $table)
-        {
+        Schema::table('menu__menuitems', function (Blueprint $table) {
             $table->string('icon')->nullable()->default(null)->change();
         });
     }
@@ -25,10 +25,8 @@ class UpdateIconColumnOnMenuitemsTable extends Migration {
      */
     public function down()
     {
-        Schema::table('menu__menuitems', function(Blueprint $table)
-        {
+        Schema::table('menu__menuitems', function (Blueprint $table) {
              $table->string('icon')->default('')->nullable(false)->change();
         });
     }
-
 }
