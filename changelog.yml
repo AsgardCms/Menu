@@ -3,6 +3,7 @@ versions:
     "1.16.0":
         changed:
             - Using new authorise middleware for more flexibility
+            - Added migration to alter menu item icon field so that Pingpong MenuItem correctly renders empty icon
     "1.15.0":
         changed:
             - Submenu items now have their target attribute set
