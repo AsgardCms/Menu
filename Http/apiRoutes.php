@@ -1,12 +1,16 @@
 <?php
 
-$router->group(['prefix' => '/menuitem'], function () {
-    post('/update', [
+use Illuminate\Routing\Router;
+
+/** @var Router $router */
+
+$router->group(['prefix' => '/menuitem'], function (Router $router) {
+    $router->post('/update', [
         'as' => 'api.menuitem.update',
         'uses' => 'MenuItemController@update',
         'middleware' => 'can:menu.menuitem.update',
     ]);
-    post('/delete', [
+    $router->post('/delete', [
         'as' => 'api.menuitem.delete',
         'uses' => 'MenuItemController@delete',
         'middleware' => 'can:menu.menuitem.destroy'
