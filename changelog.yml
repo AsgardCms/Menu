@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Menu
 versions:
+    "1.17.0":
+        changed:
+            - Use <code>$router</code> variable in routes file
     "1.16.0":
         changed:
             - Using new authorise middleware for more flexibility
