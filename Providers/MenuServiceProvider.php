@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Menu\Entities\Menu;
 use Modules\Menu\Entities\Menuitem;
 use Modules\Menu\Repositories\Cache\CacheMenuDecorator;
@@ -14,6 +15,7 @@ use Pingpong\Menus\MenuItem as PingpongMenuItem;
 
 class MenuServiceProvider extends ServiceProvider
 {
+    use CanPublishConfiguration;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -37,6 +39,7 @@ class MenuServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerMenus();
+        $this->publishConfig('menu', 'permissions');
     }
 
     /**
