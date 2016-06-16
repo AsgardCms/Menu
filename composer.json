@@ -26,7 +26,7 @@
     "composer/installers": "~1.0",
     "pingpong/menus": "2.*@dev",
     "typicms/nestablecollection": "1.1.1",
-    "asgardcms/core-module": "~1.0",
+    "asgardcms/core-module": "~2.0",
     "dimsav/laravel-translatable": "~5.0"
   },
   "require-dev": {
