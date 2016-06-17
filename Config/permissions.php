@@ -3,17 +3,13 @@ return [
     'menu.menus' => [
         'index',
         'create',
-        'store',
         'edit',
-        'update',
         'destroy',
     ],
-    'menu.menuitem' => [
+    'menu.menuitems' => [
         'index',
         'create',
-        'store',
         'edit',
-        'update',
         'destroy',
     ],
 ];
