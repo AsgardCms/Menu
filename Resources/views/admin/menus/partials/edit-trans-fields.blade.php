@@ -1,7 +1,7 @@
 <div class='form-group{{ $errors->has("{$lang}[title]") ? ' has-error' : '' }}'>
     {!! Form::label("{$lang}[title]", trans('menu::menu.form.title')) !!}
     <?php $old = $menu->hasTranslation($lang) ? $menu->translate($lang)->title : '' ?>
-    {!! Form::text("{$lang}[title]", Input::old("{$lang}[title]", $old), ['class' => 'form-control', 'placeholder' => trans('menu::menu.form.title')]) !!}
+    {!! Form::text("{$lang}[title]", old("{$lang}[title]", $old), ['class' => 'form-control', 'placeholder' => trans('menu::menu.form.title')]) !!}
     {!! $errors->first("{$lang}[title]", '<span class="help-block">:message</span>') !!}
 </div>
 <div class="checkbox">

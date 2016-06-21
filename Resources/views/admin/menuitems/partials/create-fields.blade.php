@@ -1,6 +1,6 @@
 <div class="form-group{{ $errors->has("icon") ? ' has-error' : '' }}">
     {!! Form::label("icon", trans('menu::menu-items.form.icon')) !!}
-    {!! Form::text("icon", Input::old("icon"), ['class' => 'form-control', 'placeholder' => trans('menu::menu-items.form.icon')]) !!}
+    {!! Form::text("icon", old("icon"), ['class' => 'form-control', 'placeholder' => trans('menu::menu-items.form.icon')]) !!}
     {!! $errors->first("icon", '<span class="help-block">:message</span>') !!}
 </div>
 <div class="form-group">
