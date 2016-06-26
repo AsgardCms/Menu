@@ -33,7 +33,7 @@ class MenuItemController extends AdminBaseController
     {
         $pages = $this->page->all();
 
-        $menuSelect = $this->getMenuSelect($menu->all());
+        $menuSelect = $this->getMenuSelect($menu);
 
         return view('menu::admin.menuitems.create', compact('menu', 'pages', 'menuSelect'));
     }
@@ -51,7 +51,7 @@ class MenuItemController extends AdminBaseController
     {
         $pages = $this->page->all();
 
-        $menuSelect = $this->getMenuSelect($menu, $menuItem->id);
+        $menuSelect = $this->getMenuSelect($menu);
 
         return view('menu::admin.menuitems.edit', compact('menu', 'menuItem', 'pages', 'menuSelect'));
     }
@@ -78,17 +78,9 @@ class MenuItemController extends AdminBaseController
      * @param Menu, $menuItemId
      * @return array
      */
-    private function getMenuSelect($menu, $menuItemId = null)
+    private function getMenuSelect($menu)
     {
-        $menus = $menu->all();
-
-        $menuSelect = array();
-
-        foreach ($menus as $menuEntity) {
-            $menuSelect[$menuEntity['name']] = $menuEntity->menuitems()->get();
-        }
-
-        return $menuSelect;
+        return $menu->menuitems()->where('is_root', '!=', true)->get()->nest()->listsFlattened('title');
     }
 
     /**
@@ -101,11 +93,10 @@ class MenuItemController extends AdminBaseController
         $data = $request->all();
 
         foreach (\LaravelLocalization::getSupportedLanguagesKeys() as $lang) {
-            $uri = $data[$lang]['uri'];
-            $data[$lang]['uri'] = ! empty($data['link_type'] == 'internal') ? $uri : $this->getUri($data['page_id'], $lang);
+            if ($data['link_type'] == 'page') {
+                $data[$lang]['uri'] = $this->getUri($data['page_id'], $lang);
+            }
         }
-
-        unset($data['parent_id']); // Just for the moment until Selectbox is ready
 
         return array_merge($data, ['menu_id' => $menu->id]);
     }
@@ -168,6 +159,6 @@ class MenuItemController extends AdminBaseController
      */
     private function getParentUri($item, $linkPathArray)
     {
-        return ! is_null($item->uri) ? $item->uri . '/' . $linkPathArray : $linkPathArray;
+        return ! is_null($item->uri) ? $item->uri . '/' . implode('/', $linkPathArray) : implode('/', $linkPathArray);
     }
 }
