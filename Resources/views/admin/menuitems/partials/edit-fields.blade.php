@@ -3,7 +3,11 @@
     {!! Form::text("icon", Input::old("icon",$menuItem->icon), ['class' => 'form-control', 'placeholder' => trans('menu::menu-items.form.icon')]) !!}
     {!! $errors->first("icon", '<span class="help-block">:message</span>') !!}
 </div>
-
+<div class="form-group{{ $errors->has("class") ? ' has-error' : '' }}">
+    {!! Form::label("class", trans('menu::menu-items.form.class')) !!}
+    {!! Form::text("class", Input::old("class",$menuItem->class), ['class' => 'form-control']) !!}
+    {!! $errors->first("class", '<span class="help-block">:message</span>') !!}
+</div>
 <div class="form-group link-type-depended link-page">
     <label for="page">{{ trans('menu::menu-items.form.page') }}</label>
     <select class="form-control" name="page_id" id="page">
@@ -16,7 +20,7 @@
     </select>
 </div>
 <div class="form-group">
-    <label for="page">{{ trans('menu::menu-items.form.parent menu item') }}</label>
+    <label for="parent_id">{{ trans('menu::menu-items.form.parent menu item') }}</label>
     <select class="form-control" name="parent_id" id="parent_id">
         <option value=""></option>
         <?php foreach ($menuSelect as $parentMenuItemId => $parentMenuItemName): ?>
