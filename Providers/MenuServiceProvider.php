@@ -89,14 +89,16 @@ class MenuServiceProvider extends ServiceProvider
     public function addItemToMenu(Menuitem $item, Builder $menu)
     {
         if ($this->hasChildren($item)) {
-            $this->addChildrenToMenu($item->title, $item->items, $menu, ['icon' => $item->icon, 'target' => $item->target]);
+            $this->addChildrenToMenu($item->title, $item->items, $menu, ['icon' => $item->icon, 'target' => $item->target, 'class' => $item->class]);
         } else {
             $target = $item->link_type != 'external' ? $item->locale . '/' . $item->uri : $item->url;
             $menu->url(
                 $target,
                 $item->title,
                 ['target' => $item->target,
-                    'icon' => $item->icon]
+                    'icon' => $item->icon,
+                    'class' => $item->class
+                ]
             );
         }
     }
@@ -128,7 +130,7 @@ class MenuServiceProvider extends ServiceProvider
             $this->addChildrenToMenu($child->title, $child->items, $sub);
         } else {
             $target = $child->link_type != 'external' ? $child->locale . '/' . $child->uri : $child->url;
-            $sub->url($target, $child->title, 0, ['icon' => $child->icon, 'target' => $child->target]);
+            $sub->url($target, $child->title, 0, ['icon' => $child->icon, 'target' => $child->target, 'class' => $child->class]);
         }
     }
 

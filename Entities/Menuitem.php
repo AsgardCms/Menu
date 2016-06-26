@@ -23,7 +23,8 @@ class Menuitem extends Model
         'url',
         'status',
         'is_root',
-        'icon'
+        'icon',
+        'class'
     ];
     protected $table = 'menu__menuitems';
 
