@@ -39,9 +39,8 @@ class MenuItemController extends AdminBaseController
     {
         $this->menuItem->create($this->addMenuId($menu, $request));
 
-        flash(trans('menu::messages.menuitem created'));
-
-        return redirect()->route('admin.menu.menu.edit', [$menu->id]);
+        return redirect()->route('admin.menu.menu.edit', [$menu->id])
+            ->withSuccess(trans('menu::messages.menuitem created'));
     }
 
     public function edit(Menu $menu, Menuitem $menuItem)
@@ -55,18 +54,16 @@ class MenuItemController extends AdminBaseController
     {
         $this->menuItem->update($menuItem, $this->addMenuId($menu, $request));
 
-        flash(trans('menu::messages.menuitem updated'));
-
-        return redirect()->route('admin.menu.menu.edit', [$menu->id]);
+        return redirect()->route('admin.menu.menu.edit', [$menu->id])
+            ->withSuccess(trans('menu::messages.menuitem updated'));
     }
 
     public function destroy(Menu $menu, Menuitem $menuItem)
     {
         $this->menuItem->destroy($menuItem);
 
-        flash(trans('menu::messages.menuitem deleted'));
-
-        return redirect()->route('admin.menu.menu.edit', [$menu->id]);
+        return redirect()->route('admin.menu.menu.edit', [$menu->id])
+            ->withSuccess(trans('menu::messages.menuitem deleted'));
     }
 
     /**

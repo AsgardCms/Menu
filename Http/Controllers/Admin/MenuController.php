@@ -50,9 +50,8 @@ class MenuController extends AdminBaseController
     {
         $this->menu->create($request->all());
 
-        flash(trans('menu::messages.menu created'));
-
-        return redirect()->route('admin.menu.menu.index');
+        return redirect()->route('admin.menu.menu.index')
+            ->withSuccess(trans('menu::messages.menu created'));
     }
 
     public function edit(Menu $menu)
@@ -68,17 +67,15 @@ class MenuController extends AdminBaseController
     {
         $this->menu->update($menu, $request->all());
 
-        flash(trans('menu::messages.menu updated'));
-
-        return redirect()->route('admin.menu.menu.index');
+        return redirect()->route('admin.menu.menu.index')
+            ->withSuccess(trans('menu::messages.menu updated'));
     }
 
     public function destroy(Menu $menu)
     {
         $this->menu->destroy($menu);
 
-        flash(trans('menu::messages.menu deleted'));
-
-        return redirect()->route('admin.menu.menu.index');
+        return redirect()->route('admin.menu.menu.index')
+            ->withSuccess(trans('menu::messages.menu deleted'));
     }
 }
