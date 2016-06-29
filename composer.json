@@ -35,12 +35,6 @@
     "fzaninotto/faker": "1.4.0",
     "doctrine/dbal": "~2.5"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/nWidart/modules"
-    }
-  ],
   "autoload-dev": {
     "psr-4": {
       "Modules\\Menu\\": ".",
