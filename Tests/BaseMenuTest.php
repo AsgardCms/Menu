@@ -12,7 +12,7 @@ use Modules\Menu\Providers\MenuServiceProvider;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Menu\Repositories\MenuRepository;
 use Orchestra\Testbench\TestCase;
-use Pingpong\Modules\ModulesServiceProvider;
+use Nwidart\Modules\LaravelModulesServiceProvider;
 
 abstract class BaseMenuTest extends TestCase
 {
@@ -41,7 +41,7 @@ abstract class BaseMenuTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            ModulesServiceProvider::class,
+            LaravelModulesServiceProvider::class,
             CoreServiceProvider::class,
             MenuServiceProvider::class,
             LaravelLocalizationServiceProvider::class,
