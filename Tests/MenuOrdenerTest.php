@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Tests;
+<?php
+
+namespace Modules\Menu\Tests;
 
 class MenuOrdenerTest extends BaseMenuTest
 {

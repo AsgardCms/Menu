@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Tests;
+<?php
+
+namespace Modules\Menu\Tests;
 
 use Faker\Factory;
 use Illuminate\Contracts\Console\Kernel;
@@ -11,8 +13,8 @@ use Modules\Core\Providers\CoreServiceProvider;
 use Modules\Menu\Providers\MenuServiceProvider;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Menu\Repositories\MenuRepository;
-use Orchestra\Testbench\TestCase;
 use Nwidart\Modules\LaravelModulesServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 abstract class BaseMenuTest extends TestCase
 {

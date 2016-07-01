@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Composers;
+<?php
+
+namespace Modules\Menu\Composers;
 
 use Modules\Menu\Entities\Menuitem as MenuitemEntity;
 use Modules\Menu\Repositories\MenuItemRepository;

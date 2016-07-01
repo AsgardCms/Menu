@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Entities;
+<?php
+
+namespace Modules\Menu\Entities;
 
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +23,7 @@ class Menuitem extends Model
         'url',
         'status',
         'is_root',
-        'icon'
+        'icon',
     ];
     protected $table = 'menu__menuitems';
 

@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Providers;
+<?php
+
+namespace Modules\Menu\Providers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
@@ -99,7 +101,7 @@ class MenuServiceProvider extends ServiceProvider
                 $target,
                 $item->title,
                 ['target' => $item->target,
-                    'icon' => $item->icon]
+                    'icon' => $item->icon, ]
             );
         }
     }

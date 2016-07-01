@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Services;
+<?php
+
+namespace Modules\Menu\Services;
 
 use Illuminate\Support\Facades\URL;
 

@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Events\Handlers;
+<?php
+
+namespace Modules\Menu\Events\Handlers;
 
 use Modules\Core\Contracts\Setting;
 use Modules\Menu\Events\MenuWasCreated;

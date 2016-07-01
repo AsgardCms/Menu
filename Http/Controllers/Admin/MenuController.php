@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Http\Controllers\Admin;
+<?php
+
+namespace Modules\Menu\Http\Controllers\Admin;
 
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Menu\Entities\Menu;

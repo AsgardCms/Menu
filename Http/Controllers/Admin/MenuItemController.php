@@ -1,7 +1,8 @@
-<?php namespace Modules\Menu\Http\Controllers\Admin;
+<?php
+
+namespace Modules\Menu\Http\Controllers\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Laracasts\Flash\Flash;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Menu\Entities\Menu;
 use Modules\Menu\Entities\Menuitem;

@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Events\Handlers;
+<?php
+
+namespace Modules\Menu\Events\Handlers;
 
 use Modules\Menu\Events\MenuItemWasCreated;
 use Modules\Menu\Repositories\MenuItemRepository;

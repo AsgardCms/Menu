@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Http\Controllers\Api;
+<?php
+
+namespace Modules\Menu\Http\Controllers\Api;
 
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Http\Request;

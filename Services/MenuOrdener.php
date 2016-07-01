@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Services;
+<?php
+
+namespace Modules\Menu\Services;
 
 use Modules\Menu\Entities\Menuitem;
 use Modules\Menu\Repositories\MenuItemRepository;

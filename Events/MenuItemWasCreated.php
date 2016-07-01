@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Events;
+<?php
+
+namespace Modules\Menu\Events;
 
 class MenuItemWasCreated
 {

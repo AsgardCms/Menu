@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Repositories\Cache;
+<?php
+
+namespace Modules\Menu\Repositories\Cache;
 
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 use Modules\Menu\Repositories\MenuItemRepository;

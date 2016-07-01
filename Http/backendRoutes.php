@@ -3,7 +3,6 @@
 use Illuminate\Routing\Router;
 
 /** @var Router $router */
-
 $router->bind('menu', function ($id) {
     return app(\Modules\Menu\Repositories\MenuRepository::class)->find($id);
 });
@@ -49,7 +48,7 @@ $router->group(['prefix' => '/menu'], function (Router $router) {
         'middleware' => 'can:menu.menuitems.index',
     ]);
     $router->get('menus/{menu}/menuitem/create', [
-        'as' => 'dashboard.menuitem.create', 
+        'as' => 'dashboard.menuitem.create',
         'uses' => 'MenuItemController@create',
         'middleware' => 'can:menu.menuitems.create',
     ]);
@@ -59,17 +58,17 @@ $router->group(['prefix' => '/menu'], function (Router $router) {
         'middleware' => 'can:menu.menuitems.create',
     ]);
     $router->get('menus/{menu}/menuitem/{menuitem}/edit', [
-        'as' => 'dashboard.menuitem.edit', 
+        'as' => 'dashboard.menuitem.edit',
         'uses' => 'MenuItemController@edit',
         'middleware' => 'can:menu.menuitems.edit',
     ]);
     $router->put('menus/{menu}/menuitem/{menuitem}', [
-        'as' => 'dashboard.menuitem.update', 
+        'as' => 'dashboard.menuitem.update',
         'uses' => 'MenuItemController@update',
         'middleware' => 'can:menu.menuitems.edit',
     ]);
     $router->delete('menus/{menu}/menuitem/{menuitem}', [
-        'as' => 'dashboard.menuitem.destroy', 
+        'as' => 'dashboard.menuitem.destroy',
         'uses' => 'MenuItemController@destroy',
         'middleware' => 'can:menu.menuitems.destroy',
     ]);

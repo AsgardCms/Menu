@@ -1,4 +1,5 @@
 <?php
+
 return [
     'menu.menus' => [
         'index',
