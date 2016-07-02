@@ -2,9 +2,9 @@
 
 namespace Modules\Menu\Events\Handlers;
 
-use Modules\Core\Contracts\Setting;
 use Modules\Menu\Events\MenuWasCreated;
 use Modules\Menu\Repositories\MenuItemRepository;
+use Modules\Setting\Contracts\Setting;
 
 class RootMenuItemCreator
 {
