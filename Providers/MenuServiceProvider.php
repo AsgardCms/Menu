@@ -41,6 +41,8 @@ class MenuServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerMenus();
+        $this->registerBladeTags();
+        $this->publishConfig('menu', 'config');
         $this->publishConfig('menu', 'permissions');
     }
 
@@ -166,5 +168,19 @@ class MenuServiceProvider extends ServiceProvider
                 }
             });
         }
+    }
+
+    /**
+     * Register menu blade tags
+     */
+    protected function registerBladeTags()
+    {
+        if (app()->environment() === 'testing') {
+            return;
+        }
+
+        $this->app['blade.compiler']->directive('menu', function ($arguments) {
+            return "<?php echo new Modules\\Menu\\Services\\ParseBladeArguments(array$arguments); ?>";
+        });
     }
 }
