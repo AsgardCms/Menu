@@ -42,6 +42,7 @@ class MenuServiceProvider extends ServiceProvider
     {
         $this->registerMenus();
         $this->publishConfig('menu', 'permissions');
+        $this->publishConfig('menu', 'config');
     }
 
     /**
