@@ -14,7 +14,8 @@
     "Pingpong\\Menus\\MenusServiceProvider"
   ],
   "aliases": {
-    "Menu": "Pingpong\\Menus\\MenuFacade"
+    "Menu": "Pingpong\\Menus\\MenuFacade",
+    "MenuDirective": "Modules\\Menu\\Blade\\Facades\\MenuDirective"
   },
   "files": []
 }

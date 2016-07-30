@@ -11,3 +11,13 @@ return [
    */
     'custom-sidebar' => null,
 ];
+
+    /*
+    | Default Menu Presenter
+    |--------------------------------------------------------------------------
+    |--------------------------------------------------------------------------
+    | Configure which Menu presenter will be used by default without
+    | having to send it via the views
+    */
+    'default_menu_presenter' => 'Modules\Menu\Presenters\MenuPresenter',
+];
