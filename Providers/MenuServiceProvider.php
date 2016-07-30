@@ -2,9 +2,9 @@
 
 namespace Modules\Menu\Providers;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
+use Modules\Menu\Blade\MenuDirective;
 use Modules\Menu\Entities\Menu;
 use Modules\Menu\Entities\Menuitem;
 use Modules\Menu\Repositories\Cache\CacheMenuDecorator;
@@ -33,6 +33,10 @@ class MenuServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBindings();
+
+        $this->app->bind('menu.menu.directive', function () {
+            return new MenuDirective();
+        });
     }
 
     /**
@@ -180,7 +184,7 @@ class MenuServiceProvider extends ServiceProvider
         }
 
         $this->app['blade.compiler']->directive('menu', function ($arguments) {
-            return "<?php echo new Modules\\Menu\\Services\\ParseBladeArguments(array$arguments); ?>";
+            return "<?php echo MenuDirective::show(array$arguments); ?>";
         });
     }
 }

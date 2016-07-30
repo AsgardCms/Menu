@@ -1,17 +1,18 @@
 <?php
 
-namespace Modules\Menu\Services;
+namespace Modules\Menu\Blade;
 
-class ParseBladeArguments
+final class MenuDirective
 {
     private $name;
     private $presenter;
     private $bindings;
 
-    public function __construct($arguments)
+    public function show($arguments)
     {
         $this->extractArguments($arguments);
-        $this->returnMenu();
+
+        return $this->returnMenu();
     }
 
     /**
@@ -31,7 +32,7 @@ class ParseBladeArguments
      */
     private function returnMenu()
     {
-        if (empty($this->presenter)) {
+        if ($this->presenter === null) {
             $this->presenter = config('asgard.menu.config.default_menu_presenter');
         }
 
