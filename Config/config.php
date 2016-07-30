@@ -10,9 +10,11 @@ return [
    | No custom sidebar: null
    */
     'custom-sidebar' => null,
+];
+
     /*
-    |--------------------------------------------------------------------------
     | Default Menu Presenter
+    |--------------------------------------------------------------------------
     |--------------------------------------------------------------------------
     | Configure which Menu presenter will be used by default without
     | having to send it via the views
