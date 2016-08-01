@@ -10,6 +10,9 @@ class MenuPresenter extends Presenter
 {
     public function setLocale($item)
     {
+        if (starts_with($item->url, 'http')) {
+            return;
+        }
         if (LaravelLocalization::hideDefaultLocaleInURL() === false) {
             $item->url = locale() . '/' . preg_replace('%^/?' . locale() . '/%', '$1', $item->url);
         }
