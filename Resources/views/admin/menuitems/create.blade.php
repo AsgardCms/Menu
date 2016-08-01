@@ -17,24 +17,7 @@
 @section('content')
 {!! Form::open(['route' => ['dashboard.menuitem.store', $menu->id], 'method' => 'post']) !!}
 <div class="row">
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-header">
-                <h3 class="box-title">{{ trans('menu::menu-items.link-type.link type') }}</h3>
-            </div>
-            <div class="box-body">
-                <div class="radio">
-                    <input type="radio" id="link-page" name="link_type" value="page" checked><label for="link-page">{{ trans('menu::menu-items.link-type.page') }}</label>
-                </div>
-                <div class="radio">
-                    <input type="radio" id="link-internal" name="link_type" value="internal"><label for="link-internal">{{ trans('menu::menu-items.link-type.internal') }}</label>
-                </div>
-                <div class="radio">
-                    <input type="radio" id="link-external" name="link_type" value="external"><label for="link-external">{{ trans('menu::menu-items.link-type.external') }}</label>
-                </div>
-            </div>
-        </div>
-
+    <div class="col-md-9">
         <div class="box box-primary">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
@@ -74,6 +57,24 @@
             <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
             <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>
             <a class="btn btn-danger pull-right btn-flat" href="{{ URL::route('admin.menu.menu.edit', [$menu->id])}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">{{ trans('menu::menu-items.link-type.link type') }}</h3>
+            </div>
+            <div class="box-body">
+                <div class="radio">
+                    <input type="radio" id="link-page" name="link_type" value="page" checked><label for="link-page">{{ trans('menu::menu-items.link-type.page') }}</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" id="link-internal" name="link_type" value="internal"><label for="link-internal">{{ trans('menu::menu-items.link-type.internal') }}</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" id="link-external" name="link_type" value="external"><label for="link-external">{{ trans('menu::menu-items.link-type.external') }}</label>
+                </div>
+            </div>
         </div>
     </div>
 </div>
