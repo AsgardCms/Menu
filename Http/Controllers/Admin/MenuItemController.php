@@ -92,7 +92,7 @@ class MenuItemController extends AdminBaseController
 
         foreach (LaravelLocalization::getSupportedLanguagesKeys() as $lang) {
             if ($data['link_type'] === 'page' && ! empty($data['page_id'])) {
-                $data[$lang]['uri'] = $this->getUri($data['page_id'], $lang);
+                $data[$lang]['uri'] = $this->getUri($data['page_id'], $lang, $data['parent_id']);
             }
         }
 
@@ -109,13 +109,17 @@ class MenuItemController extends AdminBaseController
      * @param $lang
      * @return string
      */
-    private function getUri($pageId, $lang)
+    private function getUri($pageId, $lang, $parentId)
     {
         $linkPathArray = array();
 
         array_push($linkPathArray, $this->getPageSlug($pageId, $lang));
 
         $currentItem = $this->menuItem->getByAttributes(['page_id' => $pageId])->first();
+
+        if ($parentId === '') {
+            return $this->getPageSlug($currentItem->page_id, $lang);
+        }
 
         if ($currentItem !== null) {
             $hasParentItem = !(is_null($currentItem->parent_id)) ? true : false;
