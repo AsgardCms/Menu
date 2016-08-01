@@ -20,6 +20,22 @@
     <div class="col-md-12">
         <div class="box box-primary">
             <div class="box-header">
+                <h3 class="box-title">{{ trans('menu::menu-items.link-type.link type') }}</h3>
+            </div>
+            <div class="box-body">
+                <div class="radio">
+                    <input type="radio" id="link-page" name="link_type" value="page"{{ $menuItem->link_type=='page' ? ' checked' : '' }}><label for="link-page">{{ trans('menu::menu-items.link-type.page') }}</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" id="link-internal" name="link_type" value="internal"{{ $menuItem->link_type=='internal' ? ' checked' : '' }}><label for="link-internal">{{ trans('menu::menu-items.link-type.internal') }}</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" id="link-external" name="link_type" value="external"{{ $menuItem->link_type=='external' ? ' checked' : '' }}><label for="link-external">{{ trans('menu::menu-items.link-type.external') }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="box box-primary">
+            <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
             </div>
             <div class="box-body">
@@ -93,6 +109,16 @@ $( document ).ready(function() {
         var name = $(this).attr('name'),
             input = '<input type="hidden" name="' + name + '" value="0" />';
         $(this).parent().append(input);
+    });
+
+    $('.link-type-depended').hide();
+    $('.link-{{ $menuItem->link_type }}').fadeIn();
+    $('[name="link_type"]').iCheck({
+        checkboxClass: 'icheckbox_minimal',
+        radioClass: 'iradio_flat-blue'
+    }).on('ifChecked',function(){
+        $('.link-type-depended').hide();
+        $('.link-'+$(this).val()).fadeIn();
     });
 });
 </script>
