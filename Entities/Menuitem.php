@@ -10,7 +10,7 @@ class Menuitem extends Model
 {
     use Translatable, NestableTrait;
 
-    public $translatedAttributes = ['title', 'uri', 'url', 'status'];
+    public $translatedAttributes = ['title', 'uri', 'url', 'status', 'locale'];
     protected $fillable = [
         'menu_id',
         'page_id',
@@ -24,6 +24,9 @@ class Menuitem extends Model
         'status',
         'is_root',
         'icon',
+        'link_type',
+        'locale',
+        'class',
     ];
     protected $table = 'menu__menuitems';
 
@@ -36,7 +39,7 @@ class Menuitem extends Model
 
     public function menu()
     {
-        return $this->belongsTo('Modules\Menu\Entities\Menu');
+        return $this->belongsTo(Menu::class);
     }
 
     /**
