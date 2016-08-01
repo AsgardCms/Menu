@@ -32,10 +32,6 @@ final class MenuDirective
      */
     private function returnMenu()
     {
-        if ($this->presenter === null) {
-            $this->presenter = config('asgard.menu.config.default_menu_presenter');
-        }
-
         return app('menus')->get($this->name, $this->presenter, $this->bindings);
     }
 
