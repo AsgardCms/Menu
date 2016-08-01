@@ -150,7 +150,14 @@ class MenuItemController extends AdminBaseController
      */
     private function getPageSlug($id, $lang)
     {
-        return $this->page->find($id)->translate($lang)->slug;
+        $page = $this->page->find($id);
+        $translation = $page->translate($lang);
+
+        if ($translation === null) {
+            return $page->translate(config('app.fallback_locale'))->slug;
+        }
+
+        return $translation->slug;
     }
 
     /**
