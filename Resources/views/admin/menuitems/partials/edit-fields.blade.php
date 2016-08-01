@@ -20,7 +20,17 @@
         <?php endforeach; ?>
     </select>
 </div>
-
+<div class="form-group">
+    <label for="parent_id">{{ trans('menu::menu-items.form.parent menu item') }}</label>
+    <select class="form-control" name="parent_id" id="parent_id">
+        <option value=""></option>
+        <?php foreach ($menuSelect as $parentMenuItemId => $parentMenuItemName): ?>
+        <?php if ($menuItem->id != $parentMenuItemId): ?>
+        <option value="{{ $parentMenuItemId }}" {{ $menuItem->parent_id == $parentMenuItemId ? ' selected' : '' }}>{{ $parentMenuItemName }}</option>
+        <?php endif; ?>
+        <?php endforeach; ?>
+    </select>
+</div>
 <div class="form-group">
     <label for="target">{{ trans('menu::menu-items.form.target') }}</label>
     <select class="form-control" name="target" id="target">
