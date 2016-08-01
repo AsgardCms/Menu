@@ -117,7 +117,7 @@ class MenuItemController extends AdminBaseController
 
         $currentItem = $this->menuItem->getByAttributes(['page_id' => $pageId])->first();
 
-        if (! is_null($currentItem)) {
+        if ($currentItem !== null) {
             $hasParentItem = !(is_null($currentItem->parent_id)) ? true : false;
 
             while ($hasParentItem) {
