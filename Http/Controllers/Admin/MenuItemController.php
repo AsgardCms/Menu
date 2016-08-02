@@ -10,6 +10,7 @@ use Modules\Menu\Entities\Menuitem;
 use Modules\Menu\Http\Requests\CreateMenuItemRequest;
 use Modules\Menu\Http\Requests\UpdateMenuItemRequest;
 use Modules\Menu\Repositories\MenuItemRepository;
+use Modules\Menu\Services\MenuItemUriGenerator;
 use Modules\Page\Repositories\PageRepository;
 
 class MenuItemController extends AdminBaseController
@@ -22,12 +23,17 @@ class MenuItemController extends AdminBaseController
      * @var PageRepository
      */
     private $page;
+    /**
+     * @var MenuItemUriGenerator
+     */
+    private $menuItemUriGenerator;
 
-    public function __construct(MenuItemRepository $menuItem, PageRepository $page)
+    public function __construct(MenuItemRepository $menuItem, PageRepository $page, MenuItemUriGenerator $menuItemUriGenerator)
     {
         parent::__construct();
         $this->menuItem = $menuItem;
         $this->page = $page;
+        $this->menuItemUriGenerator = $menuItemUriGenerator;
     }
 
     public function create(Menu $menu)
@@ -92,7 +98,7 @@ class MenuItemController extends AdminBaseController
 
         foreach (LaravelLocalization::getSupportedLanguagesKeys() as $lang) {
             if ($data['link_type'] === 'page' && ! empty($data['page_id'])) {
-                $data[$lang]['uri'] = $this->getUri($data['page_id'], $data['parent_id'], $lang);
+                $data[$lang]['uri'] = $this->menuItemUriGenerator->generateUri($data['page_id'], $data['parent_id'], $lang);
             }
         }
 
@@ -101,70 +107,5 @@ class MenuItemController extends AdminBaseController
         }
 
         return array_merge($data, ['menu_id' => $menu->id]);
-    }
-
-    /**
-     * Get uri
-     * @param string $pageId
-     * @param string $parentId
-     * @param string $lang
-     * @return string
-     */
-    private function getUri($pageId, $parentId, $lang)
-    {
-        $linkPathArray = [];
-
-        $linkPathArray[] = $this->getPageSlug($pageId, $lang);
-
-        if ($parentId !== '') {
-            $hasParentItem = !(is_null($parentId)) ? true : false;
-            while ($hasParentItem) {
-                $parentItemId = isset($parentItem) ? $parentItem->parent_id : $parentId;
-                $parentItem = $this->menuItem->find($parentItemId);
-
-                if ($parentItem->is_root === 0) {
-                    if ($parentItem->page_id !== '') {
-                        $linkPathArray[] = $this->getPageSlug($parentItem->page_id, $lang);
-                    } else {
-                        $linkPathArray[] = $this->getParentUri($parentItem, $linkPathArray);
-                    }
-                    $hasParentItem = !is_null($parentItem->parent_id) ? true : false;
-                } else {
-                    $hasParentItem = false;
-                }
-            }
-        }
-        $parentLinkPath = implode('/', array_reverse($linkPathArray));
-
-        return $parentLinkPath;
-    }
-
-    /**
-     * Get page slug
-     *
-     * @params $pageId, $lang
-     * @return string
-     */
-    private function getPageSlug($id, $lang)
-    {
-        $page = $this->page->find($id);
-        $translation = $page->translate($lang);
-
-        if ($translation === null) {
-            return $page->translate(config('app.fallback_locale'))->slug;
-        }
-
-        return $translation->slug;
-    }
-
-    /**
-     * Get parent uri
-     *
-     * @params $pageId, $lang
-     * @return string
-     */
-    private function getParentUri($item, $linkPathArray)
-    {
-        return ! is_null($item->uri) ? $item->uri . '/' . implode('/', $linkPathArray) : implode('/', $linkPathArray);
     }
 }
