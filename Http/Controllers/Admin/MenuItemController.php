@@ -92,7 +92,7 @@ class MenuItemController extends AdminBaseController
 
         foreach (LaravelLocalization::getSupportedLanguagesKeys() as $lang) {
             if ($data['link_type'] === 'page' && ! empty($data['page_id'])) {
-                $data[$lang]['uri'] = $this->getUri($data['page_id'], $lang, $data['parent_id']);
+                $data[$lang]['uri'] = $this->getUri($data['page_id'], $data['parent_id'], $lang);
             }
         }
 
@@ -105,42 +105,35 @@ class MenuItemController extends AdminBaseController
 
     /**
      * Get uri
-     * @param $pageId
-     * @param $lang
+     * @param string $pageId
+     * @param string $parentId
+     * @param string $lang
      * @return string
      */
-    private function getUri($pageId, $lang, $parentId)
+    private function getUri($pageId, $parentId, $lang)
     {
-        $linkPathArray = array();
+        $linkPathArray = [];
 
-        array_push($linkPathArray, $this->getPageSlug($pageId, $lang));
+        $linkPathArray[] = $this->getPageSlug($pageId, $lang);
 
-        $currentItem = $this->menuItem->getByAttributes(['page_id' => $pageId])->first();
-
-        if ($parentId === '') {
-            return $this->getPageSlug($currentItem->page_id, $lang);
-        }
-
-        if ($currentItem !== null) {
-            $hasParentItem = !(is_null($currentItem->parent_id)) ? true : false;
-
-            while ($hasParentItem) {
-                $parentItemId = isset($parentItem) ? $parentItem->parent_id : $currentItem->parent_id;
-
+        if ($parentId !== '') {
+            $hasParentItem = !(is_null($parentId)) ? true : false;
+            while($hasParentItem) {
+                $parentItemId = isset($parentItem) ? $parentItem->parent_id : $parentId;
                 $parentItem = $this->menuItem->find($parentItemId);
 
-                if ($parentItem->is_root != true) {
-                    if (!empty($parentItem->page_id)) {
-                        array_push($linkPathArray, $this->getPageSlug($parentItem->page_id, $lang));
+                if ($parentItem->is_root === 0) {
+                    if ($parentItem->page_id !== '') {
+                        $linkPathArray[] = $this->getPageSlug($parentItem->page_id, $lang);
                     } else {
-                        array_push($linkPathArray, $this->getParentUri($parentItem, $linkPathArray));
+                        $linkPathArray[] = $this->getParentUri($parentItem, $linkPathArray);
                     }
+                    $hasParentItem = !is_null($parentItem->parent_id) ? true : false;
+                } else {
+                    $hasParentItem = false;
                 }
-
-                $hasParentItem = !is_null($parentItem->parent_id) ? true : false;
             }
         }
-
         $parentLinkPath = implode('/', array_reverse($linkPathArray));
 
         return $parentLinkPath;
