@@ -42,7 +42,7 @@ final class MenuItemUriGenerator
                 $parentItem = $this->menuItem->find($parentItemId);
 
                 if ((int) $parentItem->is_root === 0) {
-                    if ($parentItem->page_id !== '') {
+                    if ($parentItem->page_id != '') {
                         $linkPathArray[] = $this->getPageSlug($parentItem->page_id, $lang);
                     } else {
                         $linkPathArray[] = $this->getParentUri($parentItem, $linkPathArray);
@@ -84,6 +84,10 @@ final class MenuItemUriGenerator
      */
     private function getParentUri($item, $linkPathArray)
     {
-        return ! is_null($item->uri) ? $item->uri . '/' . implode('/', $linkPathArray) : implode('/', $linkPathArray);
+        if ($item->uri === null) {
+            return implode('/', $linkPathArray);
+        }
+
+        return $item->uri;
     }
 }
