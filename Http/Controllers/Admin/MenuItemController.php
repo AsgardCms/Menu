@@ -118,7 +118,7 @@ class MenuItemController extends AdminBaseController
 
         if ($parentId !== '') {
             $hasParentItem = !(is_null($parentId)) ? true : false;
-            while($hasParentItem) {
+            while ($hasParentItem) {
                 $parentItemId = isset($parentItem) ? $parentItem->parent_id : $parentId;
                 $parentItem = $this->menuItem->find($parentItemId);
 
