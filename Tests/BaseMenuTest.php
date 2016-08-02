@@ -89,6 +89,10 @@ abstract class BaseMenuTest extends TestCase
             '--database' => 'sqlite',
             '--path'     => $migrationsPath,
         ]);
+        $this->artisan('migrate', [
+            '--database' => 'sqlite',
+            '--path'     => 'Modules/Page/Database/Migrations',
+        ]);
     }
 
     public function createMenu($name, $title)
