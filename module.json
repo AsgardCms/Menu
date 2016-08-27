@@ -11,10 +11,10 @@
     "Modules\\Menu\\Providers\\RouteServiceProvider",
     "Modules\\Menu\\Providers\\MenuServiceProvider",
     "Modules\\Menu\\Providers\\EventServiceProvider",
-    "Pingpong\\Menus\\MenusServiceProvider"
+    "Nwidart\\Menus\\MenusServiceProvider"
   ],
   "aliases": {
-    "Menu": "Pingpong\\Menus\\MenuFacade",
+    "Menu": "Nwidart\\Menus\\MenuFacade",
     "MenuDirective": "Modules\\Menu\\Blade\\Facades\\MenuDirective"
   },
   "files": []

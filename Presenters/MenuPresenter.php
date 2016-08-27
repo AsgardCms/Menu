@@ -3,8 +3,8 @@
 namespace Modules\Menu\Presenters;
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Pingpong\Menus\MenuItem;
-use Pingpong\Menus\Presenters\Presenter;
+use Nwidart\Menus\MenuItem;
+use Nwidart\Menus\Presenters\Presenter;
 
 class MenuPresenter extends Presenter
 {

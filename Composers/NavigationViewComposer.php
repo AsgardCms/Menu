@@ -5,9 +5,9 @@ namespace Modules\Menu\Composers;
 use Modules\Menu\Entities\Menuitem as MenuitemEntity;
 use Modules\Menu\Repositories\MenuItemRepository;
 use Modules\Menu\Repositories\MenuRepository;
-use Pingpong\Menus\Builder;
-use Pingpong\Menus\Facades\Menu;
-use Pingpong\Menus\MenuItem;
+use Nwidart\Menus\Builder;
+use Nwidart\Menus\Facades\Menu;
+use Nwidart\Menus\MenuItem;
 
 class NavigationViewComposer
 {
