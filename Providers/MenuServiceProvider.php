@@ -48,6 +48,7 @@ class MenuServiceProvider extends ServiceProvider
         $this->registerBladeTags();
         $this->publishConfig('menu', 'permissions');
         $this->publishConfig('menu', 'config');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
