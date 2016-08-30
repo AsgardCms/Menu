@@ -77,12 +77,9 @@ abstract class BaseMenuTest extends TestCase
 
     private function resetDatabase()
     {
-        // Relative to the testbench app folder: vendors/orchestra/testbench/src/fixture
-        $migrationsPath = 'Database/Migrations';
         // Makes sure the migrations table is created
         $this->artisan('migrate', [
             '--database' => 'sqlite',
-            '--path'     => $migrationsPath,
         ]);
         // We empty all tables
         $this->artisan('migrate:reset', [
@@ -91,7 +88,6 @@ abstract class BaseMenuTest extends TestCase
         // Migrate
         $this->artisan('migrate', [
             '--database' => 'sqlite',
-            '--path'     => $migrationsPath,
         ]);
         $this->artisan('migrate', [
             '--database' => 'sqlite',
