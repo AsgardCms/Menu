@@ -188,7 +188,7 @@ class MenuServiceProvider extends ServiceProvider
         }
 
         $this->app['blade.compiler']->directive('menu', function ($arguments) {
-            return "<?php echo MenuDirective::show(array$arguments); ?>";
+            return "<?php echo MenuDirective::show([$arguments]); ?>";
         });
     }
 }
