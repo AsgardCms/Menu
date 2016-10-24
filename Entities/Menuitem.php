@@ -2,6 +2,7 @@
 
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Page\Entities\Page;
 use TypiCMS\NestableTrait;
 
 class Menuitem extends Model
@@ -63,5 +64,13 @@ class Menuitem extends Model
     public function setPageIdAttribute($value)
     {
         $this->attributes['page_id'] = ! empty($value) ? $value : null;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
     }
 }
