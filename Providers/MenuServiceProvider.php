@@ -91,13 +91,21 @@ class MenuServiceProvider extends ServiceProvider
         if ($this->hasChildren($item)) {
             $this->addChildrenToMenu($item->title, $item->items, $menu, ['icon' => $item->icon, 'target' => $item->target]);
         } else {
-            $target = $item->uri ?: $item->url;
-            $menu->url(
-                $target,
-                $item->title,
-                ['target' => $item->target,
-                    'icon' => $item->icon]
-            );
+            if ($item->page) {
+                $menu->route(
+                    'page',
+                    $item->title,
+                    ['uri' => $item->page->slug],
+                    ['target' => $item->target, 'icon' => $item->icon]
+                );
+            } else {
+                $menu->url(
+                    $item->uri ?: $item->url,
+                    $item->title,
+                    ['target' => $item->target, 'icon' => $item->icon]
+                );
+            }
+
         }
     }
 
@@ -127,8 +135,21 @@ class MenuServiceProvider extends ServiceProvider
         if ($this->hasChildren($child)) {
             $this->addChildrenToMenu($child->title, $child->items, $sub);
         } else {
-            $target = $child->uri ?: $child->url;
-            $sub->url($target, $child->title, 0, ['icon' => $child->icon, 'target' => $child->target]);
+            $sub->url($child->getItemUrl(), $child->title, 0, ['icon' => $child->icon, 'target' => $child->target]);
+            if ($child->page) {
+                $sub->route(
+                    'page',
+                    $child->title,
+                    ['uri' => $child->page->slug],
+                    ['target' => $child->target, 'icon' => $child->icon]
+                );
+            } else {
+                $sub->url(
+                    $child->uri ?: $child->url,
+                    $child->title,
+                    ['target' => $child->target, 'icon' => $child->icon]
+                );
+            }
         }
     }
 
